@@ -1,0 +1,4 @@
+Bundle-Name: Mensajeria
+Bundle-SymbolicName: com.consistent.cuervo.mensajeria
+Bundle-Version: 1.0.0
+Export-Package: com.consistent.cuervo.mensajeria.constants
