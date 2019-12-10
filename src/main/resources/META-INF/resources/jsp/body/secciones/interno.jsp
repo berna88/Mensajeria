@@ -4,12 +4,13 @@
 	<section class="row align-items-center justify-content-center no-gutters" style="height: 400px;">
 		<article class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3">
 			<h6>Tipo de servicio:</h6>
-			<form>
+			<form action="" method="post">
 				<select name="select">
-				  <option value="value1" class="option" selected>Enviar</option> 
-				  <option value="value2" class="option">Recibir</option>
+				  <option value="Enviar" class="option" selected>Enviar</option> 
+				  <option value="Recibir" class="option">Recibir</option>
 				</select>
-				<button type="submit" class="mt-50 border border-0 float-right w-50 pt-1 pb-1 font-weight-bold" style="background-color: #cbb874;">Solicitar</button>
+				<a href="${getFormInterno}" class="mt-50 border border-0 w-50 pt-1 pb-1 font-weight-normal text-center float-right" style="background: #cbb874;color: black;display: block;margin: auto;">Solicitar</a>
+				<!--  <button type="submit" class="mt-50 border border-0 float-right w-50 pt-1 pb-1 font-weight-normal" style="background-color: #cbb874;">Solicitar</button>-->
 			</form>
 		</article>
 	</section>

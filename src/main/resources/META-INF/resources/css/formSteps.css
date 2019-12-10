@@ -1,0 +1,217 @@
+/*-----------------------------------Eventos ---------------------------------------------*/
+#form-eve1{
+	display: block;
+    margin-left: 25%;
+    width: 50%;
+    margin-right: 25%;
+}
+#form-eve2{
+	display: block;
+    margin-left: 25%;
+    width: 50%;
+    margin-right: 25%;
+}
+.progressbar {
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+.progressbar li {
+  list-style-type: none;
+  width: 25%;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+.progressbar li:before {
+  width: 30px;
+  height: 30px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 30px;
+  border: 2px solid #7d7d7d;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+.progressbar li:after {
+    width: 100%;
+    height: 2px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 15px;
+    left: -140px;
+    
+}
+.progressbar li:first-child:after {
+  content: none;
+}
+.progressbar li.active {
+  color: green;
+}
+.progressbar li.active:before {
+  border-color: #55b776;
+}
+.progressbar li.active + li:after {
+  background-color: #55b776;
+}
+.formulario-xl .form-control, .formulario-xl .custom-select {
+    color: #CCB874;
+    font-weight: 500;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 50px;
+}
+.formulario-xl .formulario-select .fas {
+    top: 8px;
+}
+/*------------------------------*/
+.md-stepper-horizontal {
+	display:table;
+	width:100%;
+	margin:0 auto;
+}
+.md-stepper-horizontal .md-step {
+	display:table-cell;
+	position:relative;
+	padding:24px;
+}
+/*.md-stepper-horizontal .md-step:hover,
+.md-stepper-horizontal .md-step:active {
+	background-color:rgba(0,0,0,0.04);
+}*/
+.md-stepper-horizontal .md-step:active {
+	border-radius: 15% / 75%;
+}
+.md-stepper-horizontal .md-step:first-child:active {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.md-stepper-horizontal .md-step:last-child:active {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.md-stepper-horizontal .md-step:hover .md-step-circle {
+	background-color:$gold-color;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+/*.md-stepper-horizontal .md-step:first-child .md-step-bar-left,
+.md-stepper-horizontal .md-step:last-child .md-step-bar-right {
+	display:none;
+}*/
+.md-stepper-horizontal .md-step .md-step-circle {
+	width:30px;
+	height:30px;
+	margin:0 auto;
+	border-radius: 50%;
+	border: 1px solid #CDB874;
+	text-align: center;
+	line-height:26px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #CDB874;
+}
+/*.md-stepper-horizontal.green .md-step.active .md-step-circle {
+	background-color:#00AE4D;
+}*/
+.md-stepper-horizontal.gold .md-step.active .md-step-circle {
+	background-color:#CDB874;
+	color: #FFFFFF;
+}
+.md-stepper-horizontal .md-step.active .md-step-circle {
+	background-color: rgb(33,150,243);
+}
+.md-stepper-horizontal .md-step.done .md-step-circle:before {
+	font-family:'FontAwesome';
+	font-weight:100;
+	content: "\f00c";
+}
+.md-stepper-horizontal .md-step.done .md-step-circle *,
+.md-stepper-horizontal .md-step.editable .md-step-circle * {
+	display:none;
+}
+.md-stepper-horizontal .md-step .md-step-title {
+	margin-top:16px;
+	font-size:16px;
+}
+.md-stepper-horizontal .md-step .md-step-title,
+.md-stepper-horizontal .md-step .md-step-optional {
+	text-align: center;
+	color:#E6E6E6;;
+}
+.md-stepper-horizontal .md-step .md-step-bar-left,
+.md-stepper-horizontal .md-step .md-step-bar-right {
+	position:absolute;
+	top:36px;
+	height:1px;
+	border-top:1px solid #CDB874;
+}
+.md-stepper-horizontal .md-step .md-step-bar-right {
+	right:0;
+	left:52%;
+	margin-left:20px;
+}
+.md-stepper-horizontal .md-step .md-step-bar-left {
+	left:0;
+	right:52%;
+	margin-right:20px;
+}
+.btn-principal {
+    background: #CCB874;
+    border-radius: 0;
+    font-family: "Work Sans";
+    font-weight: 600;
+    color: #000 !important;
+    font-size: 18px;
+    line-height: 48px;
+    padding: 0 30px;
+    width: 60%;
+}
+div#g-user {
+    position: relative;
+}
+i.fas.fa-user {
+    position: absolute;
+    top: 7px;
+    margin-left: 1%;
+    color: #CDB874;
+}
+.formulario .form-control {
+    
+    padding: 0 30px 0 25px;
+}
+.formulario-xl .form-control, .formulario-xl .custom-select {
+   
+    line-height: 30px;
+}
+i.far.fa-calendar-alt {
+    position: absolute;
+    top: 6px;
+    margin: 3px;
+    color: #CCB874;
+}
+.md-step.active .md-step-title {
+	color: #CDB874;
+}
+.tab {
+  display: none;
+}
+input.invalid {
+  background-color: #ffdddd!important;
+}
+.form-check input {
+    background: black;
+    border-color: #ccb874;
+}
+.form-check a {
+    color: #ccb874;
+    text-decoration: none;
+}

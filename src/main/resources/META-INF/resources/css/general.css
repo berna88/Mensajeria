@@ -29,6 +29,9 @@ font-size: 1.125em;
 .txt-center{
 	text-align: center;
 }
+.yellow{
+	color:#CCB874;
+}
 
 #transporte .input-black{
 	background-color: black;

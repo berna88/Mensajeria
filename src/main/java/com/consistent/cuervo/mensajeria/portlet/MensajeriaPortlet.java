@@ -1,9 +1,12 @@
 package com.consistent.cuervo.mensajeria.portlet;
 
 import com.consistent.cuervo.mensajeria.constants.MensajeriaPortletKeys;
-
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,4 +30,7 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class MensajeriaPortlet extends MVCPortlet {
+	private static final Log log = LogFactoryUtil.getLog(MensajeriaPortlet.class);
+	
+
 }

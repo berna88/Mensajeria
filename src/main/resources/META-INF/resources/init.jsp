@@ -10,3 +10,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
+
+<portlet:renderURL var="getFormInterno">
+	<portlet:param name="mvcPath" value="/jsp/body/secciones/form/formulario-interno.jsp"/> 
+</portlet:renderURL>
+
