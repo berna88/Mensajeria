@@ -7,7 +7,7 @@
 <!-- seccion de pasos -->  
 <div class="md-stepper-horizontal gold">
             <div class="md-step active done">
-                <div class="md-step-circle" style="opacity: 0;"><span>1</span></div>
+                <div class="md-step-circle" style="opacity: 0;"><span>0</span></div>
                 <div class="md-step-title"></div>
                 <div class="md-step-bar-left" style="right: 25%;"></div>
                 <div class="md-step-bar-right" style="left: 25%;"></div>
@@ -26,7 +26,7 @@
                 <div class="md-step-bar-right"></div>
             </div>
             <div class="md-step">
-                <div class="md-step-circle" style="opacity: 0;"><span>3</span></div>
+                <div class="md-step-circle" style="opacity: 0;"><span>0</span></div>
                 <div class="md-step-title"></div>
                 <div class="md-step-bar-left" style="right: 25%;"></div>
                 <div class="md-step-bar-right" style="left: 25%;"></div>
@@ -54,11 +54,11 @@
 		    					</select>
 	    					</div>
 			    		</div>
-	                	<div class="col-md-12 mb-1">
+	                	<div class="col-md-6 mb-1">
 	                    	<label class="text-white" for="">Fecha de solicitud</label>
 	                    	<input type="date" class="form-control"  placeholder="">
 	                	</div>
-	                	<div class="col-md-12 mb-1">
+	                	<div class="col-md-6 mb-1">
 	                    	<label class="text-white" for="">Fecha requerida:</label>
 	                    	<input type="date" class="form-control"  placeholder="">
 	                	</div>
