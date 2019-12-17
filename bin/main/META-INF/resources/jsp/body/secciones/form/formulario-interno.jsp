@@ -21,6 +21,7 @@
 	}
 }
 </style>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
 <div class="md-stepper-horizontal gold">
@@ -66,7 +67,7 @@
 						    		</div>
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Tipo de servicio:</label>
-					    		    	<div class="select-area formulario-select">
+					    		    	<div class="select-area formulario-select" style="width: 100% !important">
 					    	  	    		<select class="custom-select">
 					    						<option selected><span ></span></option>
 					    						<option id="op1" value="1"><span id="sp">Normal</span></option>
@@ -132,18 +133,18 @@
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
 		                        		<div class="col-12">
-				         					<label for="codigoPortal" class="text-white">Colonia:</label>
+				         					<label for="colonia" class="text-white">Colonia:</label>
 				                    		<input class="form-control" type="text"/>
 			                    		</div>
 			                    		<div class="col-12">
-				         					<label for="codigoPortal" class="text-white">Colonia:</label>
+				         					<label for="calle" class="text-white">Calle:</label>
 		                    				<input class="form-control" type="text"/>
 			                    		</div>
 		                    		</div>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-			                        <label for="horarioAtencion" class="text-white">Descripción del servicio:</label>
-			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;" autocomplete="off"></textarea>  
+			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:</label>
+			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;"></textarea>  
 		                        </div>
 				                <div class="form-group col-lg-12 text-right mt-25">
 				                    <a href="#" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</a>
@@ -156,26 +157,8 @@
 		</div><!-- Fin de col -->
 	</div><!-- Fin de row -->
 <!-- Fin seccion de  Formulario -->
-            <script type="">
-        
-        $(".js-select2").select2({
-            closeOnSelect : false,
-            placeholder : "",
-            allowHtml: true,
-            allowClear: true,
-            tags: true // создает новые опции на лету
-        });
-         
-    
-                function iformat(icon, badge,) {
-                    var originalOption = icon.element;
-                    var originalOptionBadge = $(originalOption).data('badge');
-                 
-                    return $('<span><i class="fa ' + $(originalOption).data('icon') + '"></i> ' + icon.text + '<span class="badge">' + originalOptionBadge + '</span></span>');
-                }
-    </script>
 
 <script src='<%=request.getContextPath()+"/js/formSteps.js"%>'>
 </script>
 
-<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
+
