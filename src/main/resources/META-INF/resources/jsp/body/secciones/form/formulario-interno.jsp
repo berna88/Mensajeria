@@ -3,6 +3,18 @@
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/general.css"%>'>
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
+<style>
+.container-flex{
+	display: flex;
+	justify-content: center;
+}
+@media only screen and (max-width: 991px) {
+  .container-flex{
+	display: flex;
+	flex-direction: column;
+	}
+}
+</style>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
 <div class="md-stepper-horizontal gold">
@@ -54,14 +66,16 @@
 		    					</select>
 	    					</div>
 			    		</div>
-	                	<div class="col-md-6 mb-1">
-	                    	<label class="text-white" for="">Fecha de solicitud</label>
-	                    	<input type="date" class="form-control"  placeholder="">
-	                	</div>
-	                	<div class="col-md-6 mb-1">
-	                    	<label class="text-white" for="">Fecha requerida:</label>
-	                    	<input type="date" class="form-control"  placeholder="">
-	                	</div>
+			    		<section class="container-flex mb-1 col-md-12">
+		                	<div>
+		                    	<label class="text-white" for="">Fecha de solicitud</label>
+		                    	<input type="date" class="form-control"  placeholder="">
+		                	</div>
+		                	<div>
+		                    	<label class="text-white" for="">Fecha requerida:</label>
+		                    	<input type="date" class="form-control"  placeholder="">
+		                	</div>
+						</section>
 						<div class="col-md-12 mt-50">
 							<a class=" w-50 pt-1 pb-1 float-right text-center" id="nextBtn" onclick="nextPrev(1)" style="background: #cbb874;color: black;display: block;margin: auto;">Siguiente</a>
 						</div>
