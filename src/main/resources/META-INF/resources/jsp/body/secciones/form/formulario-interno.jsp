@@ -4,14 +4,20 @@
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
 <style>
+.ancho-date{
+	width: 46%;
+}
 .container-flex{
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 @media only screen and (max-width: 991px) {
   .container-flex{
 	display: flex;
 	flex-direction: column;
+	}
+	.ancho-date{
+	width: 100%;
 	}
 }
 </style>
@@ -46,185 +52,109 @@
 </div>
 <!-- Fin de seccion de pasos -->  
 <!--Seccion formulario -->      
-<div class="container mt-50">
-	<div class="row justify-content-center" style="height: 400px;">
+	<div class="row justify-content-center">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="form-eve1" class="formulario formulario-xl" action="#" >
+			<form id="form-eve1" class="formulario formulario-xl" action="#" style="margin-left:0%;margin-right:0%;width:100%">
 				<!--Tab uno-->
-        			<div class="tab form-row align-items-center" style="width:100%;">
-			    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
-			    			<label class="text-white" for="">Solicitante:<span class="yellow">*</span></label>
-			    			<input type="text" class="form-control" id="titulo" placeholder="" >
-			    		</div>
-			    		<div class="col-md-12 mb-1">
-			    			<label class="text-white" for="">Tipo de servicio:</label>
-		    		    	<div class="select-area formulario-select">
-		    	  	    		<select class="custom-select">
-		    						<option selected><span ></span></option>
-		    						<option id="op1" value="1"><span id="sp">Normal</span></option>
-		    						<option value="2">Urgente</option>
-		    					</select>
-	    					</div>
-			    		</div>
-			    		<section class="container-flex mb-1 col-md-12">
-		                	<div>
-		                    	<label class="text-white" for="">Fecha de solicitud</label>
-		                    	<input type="date" class="form-control"  placeholder="">
-		                	</div>
-		                	<div>
-		                    	<label class="text-white" for="">Fecha requerida:</label>
-		                    	<input type="date" class="form-control"  placeholder="">
-		                	</div>
-						</section>
-						<div class="col-md-12 mt-50">
-							<a class=" w-50 pt-1 pb-1 float-right text-center" id="nextBtn" onclick="nextPrev(1)" style="background: #cbb874;color: black;display: block;margin: auto;">Siguiente</a>
+        			<div class="tab form-row">
+        				<div class="row justify-content-center">
+        					<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        						<div class="row">
+						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
+						    			<label class="text-white" for="">Solicitante:<span class="yellow">*</span></label>
+						    			<input type="text" class="form-control" id="titulo" placeholder="" >
+						    		</div>
+						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
+						    			<label class="text-white" for="">Tipo de servicio:</label>
+					    		    	<div class="select-area formulario-select">
+					    	  	    		<select class="custom-select">
+					    						<option selected><span ></span></option>
+					    						<option id="op1" value="1"><span id="sp">Normal</span></option>
+					    						<option value="2">Urgente</option>
+					    					</select>
+				    					</div>
+						    		</div>
+						    		<section class="container-flex col-md-12 col-lg-12 col-xl-12">
+					                	<div class="ancho-date mb-2">
+					                    	<label class="text-white" for="">Fecha de solicitud</label>
+					                    	<input type="date" class="form-control"  placeholder="">
+					                	</div>
+					                	<div class="ancho-date mb-2">
+					                    	<label class="text-white" for="">Fecha requerida:</label>
+					                    	<input type="date" class="form-control"  placeholder="">
+					                	</div>
+									</section>
+									<div class="col-md-12 mt-50">
+										<a class=" w-50 pt-1 pb-1 float-right text-center" id="nextBtn" onclick="nextPrev(1)" style="background: #cbb874;color: black;display: block;margin: auto;">Siguiente</a>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
             <!--Fin de tab uno-->
-
-               <div class="tab">
-                <div class="form-group col-lg-12">
-                    <div class="row">
-                        <div class="col-6">
-                         
-      
-       <div class="form-group">
-         <label for="">Fecha:</label>
-                <div class='input-group date' id='datetimepicker5'>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                        <i class="far fa-calendar-alt"></i>
-                    </span>
-                    <input type='date' class="form-control" />
-
-                </div>
-            </div>
-  
-                        </div>
-                        <div class="col-6">
-                           <label for="">Horario:</label>
-                        <input class="form-control" id="text" type="text" value=""> 
-                        </div>
-                    </div>
-                    
-                    <label class="texto-basico" for="">
-                    
-                    Garantía: </label>
-                    <div id="g-user">
-                    <i class="fas fa-user"></i>
-                    <input type="text" class="form-control" id="titulo" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group col-lg-12">
-                    <label for="">Montaje:</label>
-                    <div class="select-area formulario-select">
-                        <i class="fas fa-chevron-down"></i>
-                        <select class="custom-select">
-                            <option selected><span></span></option>
-                            <option value="1">select 1</option>
-                            <option value="2">Select 2</option>
-                            <option value="3">Select 3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-lg-12">
-                    <label for="">Servicio de alimentos y bebidas:</label><br>
-                 <div class="select-area formulario-select ">
-            <i class="fas fa-chevron-down"></i>
-            <select class="js-select2" multiple="multiple">
-
-                <option value="O1" data-badge="">Option1</option>
-                <option value="O2" data-badge="">Option2</option>
-                <option value="O3" data-badge="">Option3</option>
-                <option value="O4" data-badge="">Option4</option>
-                <option value="O5" data-badge="">Option5</option>
-                <option value="O6" data-badge="">Option6</option>
-                <option value="O7" data-badge="">Option7</option>
-                <option value="O8" data-badge="">Option8</option>
-                <option value="O9" data-badge="">Option9</option>
-                <option value="O10" data-badge="">Option10</option>
-                <option value="O11" data-badge="">Option11</option>
-                <option value="O12" data-badge="">Option12</option>
-                <option value="O13" data-badge="">Option13</option>
-            </select>
-          </div>
-         </div>
-
-
-
-               <div class="form-group col-lg-12">
-                    <label for="">Mantenimiento:</label>
-                    <div class="select-area formulario-select">
-                        <i class="fas fa-chevron-down"></i>
-                        <select class="custom-select">
-                            <option selected><span></span></option>
-                            <option value="1">select 1</option>
-                            <option value="2">Select 2</option>
-                            <option value="3">Select 3</option>
-                        </select>
-                    </div>
-                </div>
-
-                       <div class="form-group col-lg-12">
-                    <label for="">Tecnologia:</label><br>
-                 <div class="select-area formulario-select ">
-            <i class="fas fa-chevron-down"></i>
-            <select class="js-select2" multiple="multiple">
-
-                <option value="O1" data-badge="">Option1</option>
-                <option value="O2" data-badge="">Option2</option>
-                <option value="O3" data-badge="">Option3</option>
-                <option value="O4" data-badge="">Option4</option>
-                <option value="O5" data-badge="">Option5</option>
-                <option value="O6" data-badge="">Option6</option>
-                <option value="O7" data-badge="">Option7</option>
-                <option value="O8" data-badge="">Option8</option>
-                <option value="O9" data-badge="">Option9</option>
-                <option value="O10" data-badge="">Option10</option>
-                <option value="O11" data-badge="">Option11</option>
-                <option value="O12" data-badge="">Option12</option>
-                <option value="O13" data-badge="">Option13</option>
-            </select>
-          </div>
-         </div>
-                <div class="form-group col-lg-12">
-                    <label for="">Control de accesos:</label>
-                    <div class="select-area formulario-select">
-                        <i class="fas fa-chevron-down"></i>
-                        <select class="custom-select">
-                            <option selected><span></span></option>
-                            <option value="1">select 1</option>
-                            <option value="2">Select 2</option>
-                            <option value="3">Select 3</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group col-lg-12">
-                   
-                    <div class="form-group">
-    <label for="Comentarios">Comentarios:</label>
-    <textarea class="form-control" id="txtcoment" rows="12"></textarea>
-  </div>
-                </div>
-                <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-6">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" value="" id="CheckPoliticas" required="">
-                  <label class="form-check-label" for="invalidCheck3">
-                    He leido y acepto la <a href="">politica de vacaciones vigente</a> en CASA CUERVO MÉXICO.
-                  </label>
-            </div>
-        </div>
-              
-                <div class="form-group col-lg-12 text-right mt-25">
-                    <a href="#" class="btn btn-principal">Enviar</a>
-                </div>
-            </div>
-            	
+			<!--Tab dos-->
+               <div class="tab form-row">
+               		<div class="row justify-content-center">
+                    	<div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-11">
+                    		<div class="row">
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		         					<label for="destinatario" class="text-white">Destinatario:</label>
+		                    		<input class="form-control" type="text"/>
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		                           	<label for="numeroExterior" class="text-white">Número Exterior:</label>
+		                        	<input class="form-control" id="text" type="text"> 
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		         					<label for="estado" class="text-white">Estado:</label>
+		                    		<input class="form-control" type="text"/>
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		                           	<label for="numeroInterior" class="text-white">Número Interior:</label>
+		                        	<input class="form-control" id="text" type="text"> 
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:</label>
+		                    		<input class="form-control" type="text"/>
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		                           	<label for="teléfono" class="text-white">Teléfono:</label>
+		                        	<input class="form-control" id="text" type="tel"> 
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		         					<label for="codigoPortal" class="text-white">Código Postal:</label>
+		                    		<input class="form-control" type="text"/>
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		                           	<label for="horarioAtencion" class="text-white">Horario de atención:</label>
+		                        	<input class="form-control" id="text" type="text"> 
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		                        	<div class="row">
+		                        		<div class="col-12">
+				         					<label for="codigoPortal" class="text-white">Colonia:</label>
+				                    		<input class="form-control" type="text"/>
+			                    		</div>
+			                    		<div class="col-12">
+				         					<label for="codigoPortal" class="text-white">Colonia:</label>
+		                    				<input class="form-control" type="text"/>
+			                    		</div>
+		                    		</div>
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+			                        <label for="horarioAtencion" class="text-white">Descripción del servicio:</label>
+			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;" autocomplete="off"></textarea>  
+		                        </div>
+				                <div class="form-group col-lg-12 text-right mt-25">
+				                    <a href="#" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</a>
+				                </div>
+                			</div><!-- Fin de row -->
+                		</div><!-- Fin de col -->
+                	</div><!-- Fin de justify content -->
+            	</div><!-- Fin de tab2 -->
 			</form>
 		</div><!-- Fin de col -->
 	</div><!-- Fin de row -->
-</div><!-- Fin de container -->
 <!-- Fin seccion de  Formulario -->
             <script type="">
         
