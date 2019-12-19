@@ -24,6 +24,8 @@
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
+<%String inter = (String) request.getAttribute("HolaInterno"); %>
+<h1>Prueba<%=inter %></h1>
 <div class="md-stepper-horizontal gold">
             <div class="md-step active done">
                 <div class="md-step-circle" style="opacity: 0;"><span>0</span></div>
@@ -158,7 +160,96 @@
 	</div><!-- Fin de row -->
 <!-- Fin seccion de  Formulario -->
 
+<%-- 
 <script src='<%=request.getContextPath()+"/js/formSteps.js"%>'>
 </script>
+ --%>
+ 
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
 
+function showTab(n) {
+  // This function will display the specified tab of the form
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //and fix the Previous/Next buttons:
+  /*
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+  */
+}
+function nextPrev(n) {
+  	// This function will figure out which tab to display
+  	var x = document.getElementsByClassName("tab");
+	var i, s = document.getElementsByClassName("md-step");
+	console.log(s);
+ 
+  	//... and adds the "active" class on the current step:
+  	x[n].className += " active";
+  	// Exit the function if any field in the current tab is invalid:
+  	if (n == 1 && !validateForm()) return false;
+  	for (i = 0; i < s.length; i++) {
+    s[1].className = s[1].className.replace("active", "");
+    s[2].className = s[2].className.replace("md-step", "md-step active");
+  }
+  console.log(s);
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  //-----------------------
+ 
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    //the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  //if (valid) {
+   // document.getElementsByClassName("step")[currentTab].className += " finish";
+  //}
+  return valid; // return the valid status
+}
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  	var i, x = document.getElementsByClassName("md-step");
+  	for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace("active", "");
+    console.log(x);
+  }
+  //and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
 

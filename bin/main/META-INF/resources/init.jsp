@@ -12,6 +12,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <portlet:defineObjects />
 
 <portlet:renderURL var="getFormInterno">
-	<portlet:param name="mvcPath" value="/jsp/body/secciones/form/formulario-interno.jsp"/> 
+	<liferay-portlet:param name="mvcRenderCommandName" value="/formulario-interno"/>
+	<liferay-portlet:param name="interno" value="internoBerna"/> 
 </portlet:renderURL>
+
 

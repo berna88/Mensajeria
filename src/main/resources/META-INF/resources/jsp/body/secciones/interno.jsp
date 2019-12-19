@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="tab-pane fade active show" id="pills-seccion" role="tabpanel" aria-labelledby="pills-seccion-tab">
@@ -5,7 +6,7 @@
 		<article class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3">
 			<h6>Tipo de servicio:</h6>
 			<form action="" method="post">
-				<select name="select">
+				<select name="select" id="interno">
 				  <option value="Enviar" class="option" selected>Enviar</option> 
 				  <option value="Recibir" class="option">Recibir</option>
 				</select>
@@ -15,3 +16,25 @@
 		</article>
 	</section>
 </div>
+<script>
+function sendInterno() {
+	 var interno = document.getElementById("interno");
+	 var interValue	= interno.options[interno.selectedIndex].value;
+	 console.log(interValue);
+	 AUI().use('aui-io-request', function(A){
+	        A.io.request('${getFormInterno}', {
+	               method: 'post',
+	               data: {
+	            	   <portlet:namespace />param2: 'value2',
+	               },
+	               on: {
+	                   	success: function() {
+	                    alert(this.get('responseData'));
+	                   }
+	              }
+	        });
+	 
+	    });
+	 
+	}
+</script>

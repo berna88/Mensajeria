@@ -4,10 +4,17 @@ import com.consistent.cuervo.mensajeria.constants.MensajeriaPortletKeys;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
+
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
+import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -32,5 +39,5 @@ import org.osgi.service.component.annotations.Component;
 public class MensajeriaPortlet extends MVCPortlet {
 	private static final Log log = LogFactoryUtil.getLog(MensajeriaPortlet.class);
 	
-
+	
 }
