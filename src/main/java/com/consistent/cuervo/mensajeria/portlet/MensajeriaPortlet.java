@@ -2,6 +2,7 @@ package com.consistent.cuervo.mensajeria.portlet;
 
 import com.consistent.cuervo.mensajeria.constants.MensajeriaPortletKeys;
 import com.consistent.cuervo.mensajeria.models.Empleado;
+import com.consistent.cuervo.mensajeria.models.Mensajeria;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
@@ -10,8 +11,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -19,8 +18,6 @@ import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -99,7 +96,17 @@ public class MensajeriaPortlet extends MVCPortlet {
 			String fechaRemitente = (!ParamUtil.getString(request, "fechaRemitente").equals(null))? ParamUtil.getString(request,"fechaRemitente"):"";
 			String numeroExterior = (!ParamUtil.getString(request, "numeroExterior").equals(null))? ParamUtil.getString(request,"numeroExterior"):"";
 			String estado = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"estado"):"";
-			log.info("Solicitante: "+solicitante+tipoServicio+fechaSolicitud+fechaRequerida+fechaDestinatario+fechaRemitente+numeroExterior+estado);
+			String numeroInterior = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
+			String ciudadMunicipio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"ciudadMunicipio"):"";
+			String telefono = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"telefono"):"";
+			String codigoPostal = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"codigoPostal"):"";
+			String horarioAtencion = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"horarioAtencion"):"";
+			String colonia = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"colonia"):"";
+			String calle = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"calle"):"";
+			String descripcionServicio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
+			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, fechaDestinatario, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
+			log.info(mensajeria.toString());
+			mensajeria.sendMail();
 			
 		}catch (Exception e) {
 			// TODO: handle exception

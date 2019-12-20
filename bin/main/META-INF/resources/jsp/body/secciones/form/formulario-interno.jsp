@@ -66,7 +66,7 @@
         						<div class="row">
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Solicitante:<span class="yellow">*</span></label>
-						    			<input type="text" class="form-control" id="titulo" name="<portlet:namespace />solicitante" disabled="disabled" value="<%=nombreCompleto%>" >
+						    			<input type="text" class="form-control" id="titulo" name="<portlet:namespace />solicitante" value="<%=nombreCompleto%>" disabled="disabled">
 						    		</div>
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Tipo de servicio:</label>
