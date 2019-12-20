@@ -14,6 +14,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <portlet:actionURL name="getSelection" var="getSelectionURL" />
 <portlet:actionURL name="sendInterno" var="sendInternoURL" />
+<portlet:actionURL name="getSelectionCedis" var="getSelectionCedisURL" />
+<portlet:actionURL name="sendCedis" var="sendCedisURL" />
 <%
 Empleado empleado = (Empleado) request.getAttribute("Empleado"); 
 String nombreCompleto = empleado.getNombre() +" "+empleado.getApellidos();

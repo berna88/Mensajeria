@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/general.css"%>'>
+
 <%@ include file="/init.jsp" %>
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
@@ -16,17 +16,16 @@
   .container-flex{
 	display: flex;
 	flex-direction: column;
-	}
+	} 
 	.ancho-date{
 	width: 100%;
 	}
 }
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
-<% String tipoSelect = (String) request.getAttribute("select"); %>
+<% String tipoSelect = (String) request.getAttribute("selectCedis"); %>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
-
 <div class="md-stepper-horizontal gold">
             <div class="md-step active done">
                 <div class="md-step-circle" style="opacity: 0;"><span>0</span></div>
@@ -58,7 +57,7 @@
 <!--Seccion formulario -->      
 	<div class="row justify-content-center">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="form-eve1" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
+			<form id="form-eve1" class="formulario formulario-xl" action="${sendCedisURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
@@ -66,7 +65,7 @@
         						<div class="row">
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Solicitante:<span class="yellow">*</span></label>
-						    			<input type="text" class="form-control" id="titulo" name="<portlet:namespace />solicitante" value="<%=nombreCompleto%>" disabled="disabled">
+						    			<input type="text" class="form-control" id="titulo" name="<portlet:namespace />solicitante" value="" disabled="disabled">
 						    		</div>
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Tipo de servicio:</label>
@@ -258,4 +257,3 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 </script>
-

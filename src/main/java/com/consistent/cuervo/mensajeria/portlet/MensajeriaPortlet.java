@@ -7,8 +7,10 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
 
@@ -80,6 +82,12 @@ public class MensajeriaPortlet extends MVCPortlet {
 		request.setAttribute("select", select);
 		response.setRenderParameter("mvcPath", "/jsp/body/secciones/form/formulario-interno.jsp");
 	}
+	
+	public void getSelectionCedis(ActionRequest request, ActionResponse response) {
+		String selectCedis = ParamUtil.getString(request,"selectCedis");
+		request.setAttribute("selectCedis", selectCedis);
+		response.setRenderParameter("mvcPath", "/jsp/body/secciones/form/formulario-cedis.jsp");
+	}
 	/**
 	 * 
 	 * @param request
@@ -88,6 +96,7 @@ public class MensajeriaPortlet extends MVCPortlet {
 	public void sendInterno(ActionRequest request, ActionResponse response) {
 				log.info("<--------- Form interno ---------->");
 		try {
+			
 			String solicitante = (!ParamUtil.getString(request, "solicitante").equals(null))? ParamUtil.getString(request,"solicitante"):"";
 			String tipoServicio = (!ParamUtil.getString(request, "tipoServicio").equals(null))? ParamUtil.getString(request,"tipoServicio"):"";
 			String fechaSolicitud = (!ParamUtil.getString(request, "fechaSolicitud").equals(null))? ParamUtil.getString(request,"fechaSolicitud"):"";
@@ -104,13 +113,59 @@ public class MensajeriaPortlet extends MVCPortlet {
 			String colonia = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"colonia"):"";
 			String calle = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"calle"):"";
 			String descripcionServicio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
+			
+			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
+			String destino = "";
+			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals("")){
+				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
+				log.info(destino);
+				}
 			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, fechaDestinatario, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
+			mensajeria.setFromMensajeria(destino);
 			log.info(mensajeria.toString());
 			mensajeria.sendMail();
 			
 		}catch (Exception e) {
 			// TODO: handle exception
 			log.error("sendInterno: "+e.getCause());
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendCedis(ActionRequest request, ActionResponse response) {
+		log.info("<--------- Form interno ---------->");
+		try {	
+			String solicitante = (!ParamUtil.getString(request, "solicitante").equals(null))? ParamUtil.getString(request,"solicitante"):"";
+			String tipoServicio = (!ParamUtil.getString(request, "tipoServicio").equals(null))? ParamUtil.getString(request,"tipoServicio"):"";
+			String fechaSolicitud = (!ParamUtil.getString(request, "fechaSolicitud").equals(null))? ParamUtil.getString(request,"fechaSolicitud"):"";
+			String fechaRequerida = (!ParamUtil.getString(request, "fechaRequerida").equals(null))? ParamUtil.getString(request,"fechaRequerida"):"";
+			String fechaDestinatario = (!ParamUtil.getString(request, "fechaDestinatario").equals(null))? ParamUtil.getString(request,"fechaDestinatario"):"";
+			String fechaRemitente = (!ParamUtil.getString(request, "fechaRemitente").equals(null))? ParamUtil.getString(request,"fechaRemitente"):"";
+			String numeroExterior = (!ParamUtil.getString(request, "numeroExterior").equals(null))? ParamUtil.getString(request,"numeroExterior"):"";
+			String estado = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"estado"):"";
+			String numeroInterior = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
+			String ciudadMunicipio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"ciudadMunicipio"):"";
+			String telefono = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"telefono"):"";
+			String codigoPostal = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"codigoPostal"):"";
+			String horarioAtencion = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"horarioAtencion"):"";
+			String colonia = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"colonia"):"";
+			String calle = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"calle"):"";
+			String descripcionServicio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
+			
+			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
+			String destino = "";
+			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals("")){
+				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
+				log.info(destino);
+				}
+			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, fechaDestinatario, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
+			mensajeria.setFromMensajeria(destino);
+			log.info(mensajeria.toString());
+			mensajeria.sendMail();
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			log.error("sendCedis: "+e.getCause());
 			e.printStackTrace();
 		}
 	}

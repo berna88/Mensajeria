@@ -62,7 +62,7 @@
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
-        					<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        					<div class="col-11 col-sm-11 col-md-12 col-lg-6 col-xl-6">
         						<div class="row">
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Solicitante:<span class="yellow">*</span></label>
@@ -73,8 +73,8 @@
 					    		    	<div class="select-area formulario-select" style="width: 100% !important">
 					    	  	    		<select class="custom-select" name="<portlet:namespace />tipoServicio">
 					    						<option selected><span ></span></option>
-					    						<option id="op1" value="1"><span id="sp">Normal</span></option>
-					    						<option value="2">Urgente</option>
+					    						<option id="op1" value="normal"><span id="sp">Normal</span></option>
+					    						<option value="urgente">Urgente</option>
 					    					</select>
 				    					</div>
 						    		</div>
