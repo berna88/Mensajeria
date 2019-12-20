@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/general.css"%>'>
+<%@ include file="/init.jsp" %>
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
 <style>
@@ -22,10 +23,10 @@
 }
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
+<% String tipoSelect = (String) request.getAttribute("select"); %>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
-<%String inter = (String) request.getAttribute("HolaInterno"); %>
-<h1>Prueba<%=inter %></h1>
+
 <div class="md-stepper-horizontal gold">
             <div class="md-step active done">
                 <div class="md-step-circle" style="opacity: 0;"><span>0</span></div>
@@ -57,7 +58,7 @@
 <!--Seccion formulario -->      
 	<div class="row justify-content-center">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="form-eve1" class="formulario formulario-xl" action="#" style="margin-left:0%;margin-right:0%;width:100%">
+			<form id="form-eve1" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
@@ -65,12 +66,12 @@
         						<div class="row">
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Solicitante:<span class="yellow">*</span></label>
-						    			<input type="text" class="form-control" id="titulo" placeholder="" >
+						    			<input type="text" class="form-control" id="titulo" name="<portlet:namespace />solicitante" disabled="disabled" value="<%=nombreCompleto%>" >
 						    		</div>
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Tipo de servicio:</label>
 					    		    	<div class="select-area formulario-select" style="width: 100% !important">
-					    	  	    		<select class="custom-select">
+					    	  	    		<select class="custom-select" name="<portlet:namespace />tipoServicio">
 					    						<option selected><span ></span></option>
 					    						<option id="op1" value="1"><span id="sp">Normal</span></option>
 					    						<option value="2">Urgente</option>
@@ -80,11 +81,11 @@
 						    		<section class="container-flex col-md-12 col-lg-12 col-xl-12">
 					                	<div class="ancho-date mb-2">
 					                    	<label class="text-white" for="">Fecha de solicitud</label>
-					                    	<input type="date" class="form-control"  placeholder="">
+					                    	<input type="date" class="form-control"  placeholder="" name="<portlet:namespace />fechaSolicitud">
 					                	</div>
 					                	<div class="ancho-date mb-2">
 					                    	<label class="text-white" for="">Fecha requerida:</label>
-					                    	<input type="date" class="form-control"  placeholder="">
+					                    	<input type="date" class="form-control"  placeholder="" name="<portlet:namespace />fechaRequerida">
 					                	</div>
 									</section>
 									<div class="col-md-12 mt-50">
@@ -101,61 +102,66 @@
                     	<div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-11">
                     		<div class="row">
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		                        	<%if(tipoSelect.equalsIgnoreCase("Enviar")){ %>
 		         					<label for="destinatario" class="text-white">Destinatario:</label>
-		                    		<input class="form-control" type="text"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />fechaDestinatario"/>
+		                    		<% }else{%>
+		                    		<label for="Remitente" class="text-white">Remitente:</label>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />fechaRemitente"/>
+		                    		<% } %>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroExterior" class="text-white">Número Exterior:</label>
-		                        	<input class="form-control" id="text" type="text"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroExterior"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="estado" class="text-white">Estado:</label>
-		                    		<input class="form-control" type="text"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />estado"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Número Interior:</label>
-		                        	<input class="form-control" id="text" type="text"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numerointerior"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:</label>
-		                    		<input class="form-control" type="text"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />ciudadMunicipio"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="teléfono" class="text-white">Teléfono:</label>
-		                        	<input class="form-control" id="text" type="tel"> 
+		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="codigoPortal" class="text-white">Código Postal:</label>
-		                    		<input class="form-control" type="text"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />codigoPostal"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="horarioAtencion" class="text-white">Horario de atención:</label>
-		                        	<input class="form-control" id="text" type="text"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />horarioAtencion"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
 		                        		<div class="col-12">
 				         					<label for="colonia" class="text-white">Colonia:</label>
-				                    		<input class="form-control" type="text"/>
+				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia"/>
 			                    		</div>
 			                    		<div class="col-12">
 				         					<label for="calle" class="text-white">Calle:</label>
-		                    				<input class="form-control" type="text"/>
+		                    				<input class="form-control" type="text" name="<portlet:namespace />calle"/>
 			                    		</div>
 		                    		</div>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:</label>
-			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;"></textarea>  
+			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio"></textarea>  
 		                        </div>
 				                <div class="form-group col-lg-12 text-right mt-25">
-				                    <a href="#" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</a>
+				                    <button class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
                 		</div><!-- Fin de col -->
                 	</div><!-- Fin de justify content -->
             	</div><!-- Fin de tab2 -->
-			</form>
+			</form><!-- Fin de formulario -->
 		</div><!-- Fin de col -->
 	</div><!-- Fin de row -->
 <!-- Fin seccion de  Formulario -->

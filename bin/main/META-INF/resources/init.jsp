@@ -1,3 +1,4 @@
+<%@page import="com.consistent.cuervo.mensajeria.models.Empleado"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
@@ -11,9 +12,10 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <portlet:defineObjects />
 
-<portlet:renderURL var="getFormInterno">
-	<liferay-portlet:param name="mvcRenderCommandName" value="/formulario-interno"/>
-	<liferay-portlet:param name="interno" value="internoBerna"/> 
-</portlet:renderURL>
-
-
+<portlet:actionURL name="getSelection" var="getSelectionURL" />
+<portlet:actionURL name="sendInterno" var="sendInternoURL" />
+<%
+Empleado empleado = (Empleado) request.getAttribute("Empleado"); 
+String nombreCompleto = empleado.getNombre() +" "+empleado.getApellidos();
+System.out.print("Nombre completo: "+nombreCompleto);
+%>

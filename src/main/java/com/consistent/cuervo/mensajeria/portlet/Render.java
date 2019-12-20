@@ -4,10 +4,15 @@ import com.consistent.cuervo.mensajeria.constants.MensajeriaPortletKeys;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.util.PortalUtil;
+
+import java.util.Enumeration;
 
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -25,9 +30,9 @@ public class Render implements MVCRenderCommand{
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
 		// TODO Auto-generated method stub
 		log.info("Hola Bernardo");
-		String f = (String) renderRequest.getParameter("param2");
+		String f = (String) renderRequest.getParameter("select");
 		renderRequest.setAttribute("HolaInterno", f);
-		log.info("jola "+f);
+		log.info("Hola "+f);
 		return "/jsp/body/secciones/form/formulario-interno.jsp";
 	}
 
