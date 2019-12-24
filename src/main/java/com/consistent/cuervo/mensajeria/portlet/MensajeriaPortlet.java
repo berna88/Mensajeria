@@ -31,6 +31,8 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"com.liferay.portlet.display-category=category.sample",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
+		"com.liferay.portlet.header-portlet-css=/css/jquery-ui.css",
+		"com.liferay.portlet.footer-portlet-javascript=/js/jquery-ui.js",
 		"com.liferay.portlet.instanceable=true",
 		"javax.portlet.display-name=Mensajeria",
 		"javax.portlet.init-param.template-path=/",
@@ -96,31 +98,42 @@ public class MensajeriaPortlet extends MVCPortlet {
 	public void sendInterno(ActionRequest request, ActionResponse response) {
 				log.info("<--------- Form interno ---------->");
 		try {
-			
-			String solicitante = (!ParamUtil.getString(request, "solicitante").equals(null))? ParamUtil.getString(request,"solicitante"):"";
+			String destinatarioRemitente = "";
+			String solicitante = empleado.getNombre()+ " " +  empleado.getApellidos();
 			String tipoServicio = (!ParamUtil.getString(request, "tipoServicio").equals(null))? ParamUtil.getString(request,"tipoServicio"):"";
 			String fechaSolicitud = (!ParamUtil.getString(request, "fechaSolicitud").equals(null))? ParamUtil.getString(request,"fechaSolicitud"):"";
 			String fechaRequerida = (!ParamUtil.getString(request, "fechaRequerida").equals(null))? ParamUtil.getString(request,"fechaRequerida"):"";
-			String fechaDestinatario = (!ParamUtil.getString(request, "fechaDestinatario").equals(null))? ParamUtil.getString(request,"fechaDestinatario"):"";
+			String destinatario = (!ParamUtil.getString(request, "Destinatario").equals(null))? ParamUtil.getString(request,"Destinatario"):"";
+			String remitente = (!ParamUtil.getString(request, "Remitente").equals(null))? ParamUtil.getString(request,"Remitente"):"";
 			String fechaRemitente = (!ParamUtil.getString(request, "fechaRemitente").equals(null))? ParamUtil.getString(request,"fechaRemitente"):"";
 			String numeroExterior = (!ParamUtil.getString(request, "numeroExterior").equals(null))? ParamUtil.getString(request,"numeroExterior"):"";
 			String estado = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"estado"):"";
-			String numeroInterior = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
-			String ciudadMunicipio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"ciudadMunicipio"):"";
-			String telefono = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"telefono"):"";
-			String codigoPostal = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"codigoPostal"):"";
-			String horarioAtencion = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"horarioAtencion"):"";
-			String colonia = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"colonia"):"";
-			String calle = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"calle"):"";
-			String descripcionServicio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
+			String numeroInterior = (!ParamUtil.getString(request, "numeroInterior").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
+			String ciudadMunicipio = (!ParamUtil.getString(request, "ciudadMunicipio").equals(null))? ParamUtil.getString(request,"ciudadMunicipio"):"";
+			String telefono = (!ParamUtil.getString(request, "telefono").equals(null))? ParamUtil.getString(request,"telefono"):"";
+			String codigoPostal = (!ParamUtil.getString(request, "codigoPostal").equals(null))? ParamUtil.getString(request,"codigoPostal"):"";
+			String horarioAtencion = (!ParamUtil.getString(request, "horarioAtencion").equals(null))? ParamUtil.getString(request,"horarioAtencion"):"";
+			String colonia = (!ParamUtil.getString(request, "colonia").equals(null))? ParamUtil.getString(request,"colonia"):"";
+			String calle = (!ParamUtil.getString(request, "calle").equals(null))? ParamUtil.getString(request,"calle"):"";
+			String descripcionServicio = (!ParamUtil.getString(request, "descripcionServicio").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
 			
+			if(!destinatario.isEmpty()) {
+				log.info("destinatario no esta vacio");
+				log.info(destinatario);
+				destinatarioRemitente = destinatario;
+			}else if(!remitente.isEmpty()){
+				log.info("remitente no esta vacio");
+				log.info(remitente);
+				destinatarioRemitente = remitente;
+			}
+			log.info("destinatarioRemitente: "+destinatarioRemitente);
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
 			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals("")){
 				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
 				log.info(destino);
 				}
-			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, fechaDestinatario, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
+			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioRemitente, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
 			log.info(mensajeria.toString());
 			mensajeria.sendMail();
@@ -135,22 +148,35 @@ public class MensajeriaPortlet extends MVCPortlet {
 	public void sendCedis(ActionRequest request, ActionResponse response) {
 		log.info("<--------- Form interno ---------->");
 		try {	
-			String solicitante = (!ParamUtil.getString(request, "solicitante").equals(null))? ParamUtil.getString(request,"solicitante"):"";
+			String destinatarioRemitente = "";
+			String solicitante = empleado.getNombre()+ " " + empleado.getApellidos();
 			String tipoServicio = (!ParamUtil.getString(request, "tipoServicio").equals(null))? ParamUtil.getString(request,"tipoServicio"):"";
 			String fechaSolicitud = (!ParamUtil.getString(request, "fechaSolicitud").equals(null))? ParamUtil.getString(request,"fechaSolicitud"):"";
 			String fechaRequerida = (!ParamUtil.getString(request, "fechaRequerida").equals(null))? ParamUtil.getString(request,"fechaRequerida"):"";
-			String fechaDestinatario = (!ParamUtil.getString(request, "fechaDestinatario").equals(null))? ParamUtil.getString(request,"fechaDestinatario"):"";
+			String destinatario = (!ParamUtil.getString(request, "Destinatario").equals(null))? ParamUtil.getString(request,"Destinatario"):"";
+			String remitente = (!ParamUtil.getString(request, "Remitente").equals(null))? ParamUtil.getString(request,"Remitente"):"";
 			String fechaRemitente = (!ParamUtil.getString(request, "fechaRemitente").equals(null))? ParamUtil.getString(request,"fechaRemitente"):"";
 			String numeroExterior = (!ParamUtil.getString(request, "numeroExterior").equals(null))? ParamUtil.getString(request,"numeroExterior"):"";
 			String estado = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"estado"):"";
-			String numeroInterior = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
-			String ciudadMunicipio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"ciudadMunicipio"):"";
-			String telefono = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"telefono"):"";
-			String codigoPostal = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"codigoPostal"):"";
-			String horarioAtencion = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"horarioAtencion"):"";
-			String colonia = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"colonia"):"";
-			String calle = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"calle"):"";
-			String descripcionServicio = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
+			String numeroInterior = (!ParamUtil.getString(request, "numeroInterior").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
+			String ciudadMunicipio = (!ParamUtil.getString(request, "ciudadMunicipio").equals(null))? ParamUtil.getString(request,"ciudadMunicipio"):"";
+			String telefono = (!ParamUtil.getString(request, "telefono").equals(null))? ParamUtil.getString(request,"telefono"):"";
+			String codigoPostal = (!ParamUtil.getString(request, "codigoPostal").equals(null))? ParamUtil.getString(request,"codigoPostal"):"";
+			String horarioAtencion = (!ParamUtil.getString(request, "horarioAtencion").equals(null))? ParamUtil.getString(request,"horarioAtencion"):"";
+			String colonia = (!ParamUtil.getString(request, "colonia").equals(null))? ParamUtil.getString(request,"colonia"):"";
+			String calle = (!ParamUtil.getString(request, "calle").equals(null))? ParamUtil.getString(request,"calle"):"";
+			String descripcionServicio = (!ParamUtil.getString(request, "descripcionServicio").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
+			
+			if(!destinatario.isEmpty()) {
+				log.info("destinatario no esta vacio");
+				log.info(destinatario);
+				destinatarioRemitente = destinatario;
+			}else if(!remitente.isEmpty()){
+				log.info("remitente no esta vacio");
+				log.info(remitente);
+				destinatarioRemitente = remitente;
+			}
+			log.info("destinatarioRemitente: "+destinatarioRemitente);
 			
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
@@ -158,7 +184,7 @@ public class MensajeriaPortlet extends MVCPortlet {
 				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
 				log.info(destino);
 				}
-			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, fechaDestinatario, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
+			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioRemitente, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
 			log.info(mensajeria.toString());
 			mensajeria.sendMail();

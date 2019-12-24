@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/general.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/form.css"%>'>
 <%@ include file="/init.jsp" %>
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
@@ -79,12 +80,20 @@
 						    		</div>
 						    		<section class="container-flex col-md-12 col-lg-12 col-xl-12">
 					                	<div class="ancho-date mb-2">
-					                    	<label class="text-white" for="">Fecha de solicitud</label>
-					                    	<input type="date" class="form-control"  placeholder="" name="<portlet:namespace />fechaSolicitud">
+					                		<label class="text-white" for="FechaDeSolicitud" >
+												Fecha de solicitud*
+											</label>
+											<div class="input-group mb-3 ">
+									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
+											</div>
 					                	</div>
 					                	<div class="ancho-date mb-2">
-					                    	<label class="text-white" for="">Fecha requerida:</label>
-					                    	<input type="date" class="form-control"  placeholder="" name="<portlet:namespace />fechaRequerida">
+					                		<label class="text-white" for="FechaRequerida" >
+												Fecha requerida:*
+											</label>
+											<div class="input-group mb-3 ">
+												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
+											</div>
 					                	</div>
 									</section>
 									<div class="col-md-12 mt-50">
@@ -103,10 +112,10 @@
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<%if(tipoSelect.equalsIgnoreCase("Enviar")){ %>
 		         					<label for="destinatario" class="text-white">Destinatario:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />fechaDestinatario"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />Destinatario"/>
 		                    		<% }else{%>
 		                    		<label for="Remitente" class="text-white">Remitente:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />fechaRemitente"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />Remitente"/>
 		                    		<% } %>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
@@ -119,7 +128,7 @@
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Número Interior:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numerointerior"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:</label>
@@ -153,6 +162,7 @@
 			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:</label>
 			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio"></textarea>  
 		                        </div>
+		                        
 				                <div class="form-group col-lg-12 text-right mt-25">
 				                    <button class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
@@ -256,4 +266,112 @@ function fixStepIndicator(n) {
   //and adds the "active" class on the current step:
   x[n].className += " active";
 }
+</script>
+<script>
+
+	$(function(){
+		
+		$.datepicker.regional['es'] = {
+				closeText: 'Cerrar',
+				prevText: '< Ant',
+				nextText: 'Sig >',
+				currentText: 'Hoy',
+				monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+				monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+				dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+				dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+				dayNamesMin: ['D','L','M','M','J','V','S'],
+				weekHeader: 'Sm',
+				dateFormat: 'dd/mm/yy',
+				firstDay: 1,
+				isRTL: false,
+				showMonthAfterYear: false,
+				yearSuffix: ''
+		};
+		
+		var inputFecha = $( "#fechaInicio" );
+		var changeCloseButton = function(input) {
+			console.log('fechaInicio');
+			setTimeout(function() {
+				console.log('changeCloseButton ', input);
+		        var headerPanel = inputFecha.datepicker( "widget" ).find( ".ui-datepicker-title" );
+		        var closeBtn = $('<button style=\"position:relative; left: 90%;border: none;background: none; color: #CDB874;outline: none;padding: 10px;\">X</button>');
+		        
+		        closeBtn.bind("click", function() {
+		        	$( "#fechaRegreso" ).datepicker( "hide" );
+		        });
+		        
+		        closeBtn.prependTo(headerPanel);
+		    }, 1000 );
+		};
+		
+		$( "#fechaInicio" ).datepicker({
+			changeMonth: true,
+            changeYear: true,
+            hideIfNoPrevNext: true,
+            minDate: 0,
+            dateFormat: "yy-mm-dd",
+			beforeShow: changeCloseButton,			
+			onChangeMonthYear: changeCloseButton
+		}).focus(function () {
+	        $(".ui-datepicker-next").hide();
+	        $(".ui-datepicker-prev").hide();
+	    });
+		
+		$("#datepicker2").datepicker({
+			 showButtonPanel: true,
+			 beforeShow: function( input ) {
+			 	setTimeout(function() {
+			   		var buttonPane = $( input ).datepicker( "widget" ).find( ".ui-datepicker-buttonpane" );
+
+			   		var btn = $('Clear');
+			   		btn.unbind("click").bind("click", function () { 
+			   			$.datepicker._clearDate( input );
+			  		});
+
+			   		btn.appendTo( buttonPane );
+
+			 }, 1 );
+			      }
+			});
+		
+		$( "#fechaRegreso" ).datepicker({
+			changeMonth: true,
+            changeYear: true,
+            hideIfNoPrevNext: true,
+            minDate: 0,
+            dateFormat: "yy-mm-dd",
+            beforeShow: function( input ) {
+            	console.log('fechaRegreso beforeShow');
+            	setTimeout(function() {
+    		        var headerPanel = $(input).datepicker( "widget" ).find( ".ui-datepicker-title" );
+    		        var closeBtn = $('<button style=\"position:relative; left: 90%;border: none;background: none; color: #CDB874;outline: none;padding: 10px;\">X</button>');
+    		        
+    		        closeBtn.bind("click", function() {
+    		        	$( "#fechaRegreso" ).datepicker( "hide" );
+    		        });
+    		        
+    		        closeBtn.prependTo(headerPanel);
+    		    }, 300 );
+            },
+			onChangeMonthYear: function( input ) {
+				console.log('fechaRegreso onChangeMonthYear');
+				setTimeout(function() {
+			        var headerPanel = $(input).datepicker( "widget" ).find( ".ui-datepicker-title" );
+			        var closeBtn = $('<button style=\"position:relative; left: 90%;border: none;background: none; color: #CDB874;outline: none;padding: 10px;\">X</button>');
+			        
+			        closeBtn.bind("click", function() {
+			        	$( "#fechaRegreso" ).datepicker( "hide" );
+			        });
+			        
+			        closeBtn.prependTo(headerPanel);
+			    }, 200 );
+            },
+		}).focus(function () {
+	        $(".ui-datepicker-next").hide();
+	        $(".ui-datepicker-prev").hide();
+	    });		
+		
+		$.datepicker.setDefaults($.datepicker.regional['es']);
+	});
 </script>
