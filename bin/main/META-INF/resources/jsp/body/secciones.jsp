@@ -24,7 +24,7 @@
 		</li>
 	</ul>
 </div>
-<div class="tab-content mb-50" id="pills-tabContent">
+<div class="tab-content mb-3" id="pills-tabContent" style="height: 300px;">
 	<%@ include file="secciones/interno.jsp" %>
 	<%@ include file="secciones/cedis.jsp" %>
 	<%@ include file="secciones/mailBox.jsp" %>

@@ -129,12 +129,19 @@ public class MensajeriaPortlet extends MVCPortlet {
 			log.info("destinatarioRemitente: "+destinatarioRemitente);
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
+			String correoRemitente = "";
+			
 			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals("")){
 				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
 				log.info(destino);
 				}
+			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals("")){
+				correoRemitente = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString();
+				log.info(destino);
+				}
 			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioRemitente, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
+			mensajeria.setCorreoRemitente(correoRemitente);
 			log.info(mensajeria.toString());
 			mensajeria.sendMail();
 			
@@ -180,12 +187,19 @@ public class MensajeriaPortlet extends MVCPortlet {
 			
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
+			String correoRemitente = "";
+			
 			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals("")){
 				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
 				log.info(destino);
 				}
+			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals("")){
+				correoRemitente = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString();
+				log.info(destino);
+				}
 			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioRemitente, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
+			mensajeria.setCorreoRemitente(correoRemitente);
 			log.info(mensajeria.toString());
 			mensajeria.sendMail();
 			

@@ -23,7 +23,14 @@ public class Mensajeria {
 	private String calle;
 	private String descripcionServicio;
 	private String fromMensajeria;
+	private String correoRemitente;
 	
+	public String getCorreoRemitente() {
+		return correoRemitente;
+	}
+	public void setCorreoRemitente(String correoRemitente) {
+		this.correoRemitente = correoRemitente;
+	}
 	public String getFromMensajeria() {
 		return fromMensajeria;
 	}
@@ -180,7 +187,7 @@ public class Mensajeria {
 	}
 	
 	public void sendMail() {
-		boolean enviado = SendMail.isSendMail(fromMensajeria, "vtorres@consistent.mx", "Mensajeria [solicitante=" + solicitante + ", tipoServicio=" + tipoServicio + ", fechaSolicitud="
+		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente, "Mensajeria [solicitante=" + solicitante + ", tipoServicio=" + tipoServicio + ", fechaSolicitud="
 				+ fechaSolicitud + ", fechaRequerida=" + fechaRequerida + ", fechaDestinaratio=" + fechaDestinaratio
 				+ ", fechaRemitente=" + fechaRemitente + ", numeroExterior=" + numeroExterior + ", estado=" + estado
 				+ ", numeroInterior=" + numeroInterior + ", ciudadMunicipio=" + ciudadMunicipio + ", telefono="

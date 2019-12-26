@@ -96,7 +96,7 @@
 											</div>
 					                	</div>
 									</section>
-									<div class="col-md-12 mt-50">
+									<div class="col-md-12 mb-50">
 										<a class=" w-50 pt-1 pb-1 float-right text-center" id="nextBtn" onclick="nextPrev(1)" style="background: #cbb874;color: black;display: block;margin: auto;">Siguiente</a>
 									</div>
 								</div>
@@ -112,58 +112,58 @@
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<%if(tipoSelect.equalsIgnoreCase("Enviar")){ %>
 		         					<label for="destinatario" class="text-white">Destinatario:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />Destinatario"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />Destinatario" autocomplete="off"/>
 		                    		<% }else{%>
 		                    		<label for="Remitente" class="text-white">Remitente:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />Remitente"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />Remitente" autocomplete="off"/>
 		                    		<% } %>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroExterior" class="text-white">Número Exterior:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroExterior"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroExterior" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="estado" class="text-white">Estado:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />estado"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Número Interior:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />ciudadMunicipio"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />ciudadMunicipio" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="teléfono" class="text-white">Teléfono:</label>
-		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono"> 
+		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="codigoPortal" class="text-white">Código Postal:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />codigoPostal"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />codigoPostal" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="horarioAtencion" class="text-white">Horario de atención:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />horarioAtencion"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />horarioAtencion" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
 		                        		<div class="col-12">
 				         					<label for="colonia" class="text-white">Colonia:</label>
-				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia"/>
+				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia" autocomplete="off"/>
 			                    		</div>
 			                    		<div class="col-12">
 				         					<label for="calle" class="text-white">Calle:</label>
-		                    				<input class="form-control" type="text" name="<portlet:namespace />calle"/>
+		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" autocomplete="off"/>
 			                    		</div>
 		                    		</div>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:</label>
-			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio"></textarea>  
+			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio" autocomplete="off"></textarea>  
 		                        </div>
 		                        
-				                <div class="form-group col-lg-12 text-right mt-25">
+				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
 				                    <button class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
