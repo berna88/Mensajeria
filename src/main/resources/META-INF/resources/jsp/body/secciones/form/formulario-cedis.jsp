@@ -13,6 +13,10 @@
 	display: flex;
 	justify-content: space-between;
 }
+#formularioCedis input, #formularioCedis label {
+	font-family: "Source Sans Pro";
+}
+
 @media only screen and (max-width: 991px) {
   .container-flex{
 	display: flex;
@@ -58,7 +62,7 @@
 <!--Seccion formulario -->      
 	<div class="row justify-content-center">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="form-eve1" class="formulario formulario-xl" action="${sendCedisURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
+			<form id=formularioCedis class="formulario formulario-xl" action="${sendCedisURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
@@ -66,13 +70,12 @@
         						<div class="row">
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
 						    			<label class="text-white" for="">Solicitante:<span class="yellow">*</span></label>
-						    			<input type="text" class="form-control" id="titulo" name="<portlet:namespace />solicitante" value="bernardo hernandez ramirez" disabled="disabled">
+						    			<input type="text" class="form-control" id="titulo" name="<portlet:namespace />solicitante" value="<%=nombreCompleto%>" disabled="disabled">
 						    		</div>
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
-						    			<label class="text-white" for="">Tipo de servicio:</label>
+						    			<label class="text-white" for="">Tipo de servicio:<span class="yellow">*</span></label>
 					    		    	<div class="select-area formulario-select" style="width: 100% !important">
 					    	  	    		<select class="custom-select" name="<portlet:namespace />tipoServicio">
-					    						<option selected><span ></span></option>
 					    						<option id="op1" value="normal"><span id="sp">Normal</span></option>
 					    						<option value="urgente">Urgente</option>
 					    					</select>
@@ -81,7 +84,7 @@
 						    		<section class="container-flex col-md-12 col-lg-12 col-xl-12">
 					                	<div class="ancho-date mb-2">
 					                		<label class="text-white" for="FechaDeSolicitud" >
-												Fecha de solicitud*
+												Fecha de solicitud<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
 									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
@@ -89,14 +92,14 @@
 					                	</div>
 					                	<div class="ancho-date mb-2">
 					                		<label class="text-white" for="FechaRequerida" >
-												Fecha requerida:*
+												Fecha requerida:<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
 												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
 											</div>
 					                	</div>
 									</section>
-									<div class="col-md-12 mb-50">
+									<div class="col-md-12 mt-50 mb-50">
 										<a class=" w-50 pt-1 pb-1 float-right text-center" id="nextBtn" onclick="nextPrev(1)" style="background: #cbb874;color: black;display: block;margin: auto;">Siguiente</a>
 									</div>
 								</div>
@@ -111,59 +114,59 @@
                     		<div class="row">
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<%if(tipoSelect.equalsIgnoreCase("Enviar")){ %>
-		         					<label for="destinatario" class="text-white">Destinatario:</label>
+		         					<label for="destinatario" class="text-white">Destinatario:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />Destinatario" autocomplete="off"/>
 		                    		<% }else{%>
-		                    		<label for="Remitente" class="text-white">Remitente:</label>
+		                    		<label for="Remitente" class="text-white">Remitente:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />Remitente" autocomplete="off"/>
 		                    		<% } %>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="numeroExterior" class="text-white">Número Interior:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroExterior" autocomplete="off"> 
+		                           	<label for="numeroExterior" class="text-white">Número Interior:<span class="yellow">*</span></label>
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="estado" class="text-white">Estado:</label>
+		         					<label for="estado" class="text-white">Estado:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="numeroInterior" class="text-white">Teléfono:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off"> 
+		                           	<label for="numeroInterior" class="text-white">Teléfono:<span class="yellow">*</span></label>
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />telefono" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="numeroInterior" class="text-white">Ciudad / Municipio:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off"> 
+		                           	<label for="numeroInterior" class="text-white">Ciudad / Municipio:<span class="yellow">*</span></label>
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />ciudadMunicipio" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="ciudadMunicipio" class="text-white">Horario de atención:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />ciudadMunicipio" autocomplete="off"/>
+		         					<label for="ciudadMunicipio" class="text-white">Horario de atención:<span class="yellow">*</span></label>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />horarioAtencion" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="teléfono" class="text-white">Código Postal:</label>
-		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono" autocomplete="off"> 
+		                           	<label for="teléfono" class="text-white">Código Postal:<span class="yellow">*</span></label>
+		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />codigoPostal" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="codigoPortal" class="text-white">Evidencia de producto terminado:</label>
-		                    		<input class="form-control" type="file" name="<portlet:namespace />codigoPostal" autocomplete="off"/>
+		         					<label for="codigoPortal" class="text-white">Evidencia de producto terminado:<span class="yellow">*</span></label>
+		                    		<input class="form-control" type="file" name="<portlet:namespace />evidenciaProducto" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
 		                        		<div class="col-12">
-				         					<label for="colonia" class="text-white">Colonia:</label>
+				         					<label for="colonia" class="text-white">Colonia:<span class="yellow">*</span></label>
 				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia" autocomplete="off"/>
 			                    		</div>
 			                    		<div class="col-12">
-				         					<label for="calle" class="text-white">Calle:</label>
+				         					<label for="calle" class="text-white">Calle:<span class="yellow">*</span></label>
 		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" autocomplete="off"/>
 			                    		</div>
 			                    		<div class="col-12">
-				         					<label for="calle" class="text-white">Número Exterior:</label>
-		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" autocomplete="off"/>
+				         					<label for="calle" class="text-white">Número Exterior:<span class="yellow">*</span></label>
+		                    				<input class="form-control" type="text" name="<portlet:namespace />numeroExterior" autocomplete="off"/>
 			                    		</div>
 		                    		</div>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:</label>
+			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:<span class="yellow">*</span></label>
 			                        <textarea class="form-control" rows="5" id="comment" style="height: 165px;resize: none;" name="<portlet:namespace />descripcionServicio" autocomplete="off"></textarea>  
 		                        </div>
 		                        

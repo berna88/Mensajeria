@@ -8,10 +8,14 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.portlet.ActionRequest;
@@ -155,6 +159,21 @@ public class MensajeriaPortlet extends MVCPortlet {
 	public void sendCedis(ActionRequest request, ActionResponse response) {
 		log.info("<--------- Form interno ---------->");
 		try {	
+			byte[] bytes = null;
+			String PATH = request.getContextPath();
+			log.info(PATH);
+			UploadPortletRequest portletRequest = PortalUtil.getUploadPortletRequest(request);
+			String sourceFileName = portletRequest.getFileName("evidenciaProducto");
+			File file = portletRequest.getFile("evidenciaProducto");
+			try {
+				bytes = FileUtil.getBytes(file);
+			} catch (IOException e2) {			
+				e2.printStackTrace();
+			}
+			File plecatopFile = new File(sourceFileName);
+			FileOutputStream fileOuputStreamP = new FileOutputStream(plecatopFile);
+			fileOuputStreamP.write(bytes);
+			fileOuputStreamP.close();
 			String destinatarioRemitente = "";
 			String solicitante = empleado.getNombre()+ " " + empleado.getApellidos();
 			String tipoServicio = (!ParamUtil.getString(request, "tipoServicio").equals(null))? ParamUtil.getString(request,"tipoServicio"):"";
@@ -200,8 +219,9 @@ public class MensajeriaPortlet extends MVCPortlet {
 			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioRemitente, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
 			mensajeria.setCorreoRemitente(correoRemitente);
+			mensajeria.setEvidencia(plecatopFile);
 			log.info(mensajeria.toString());
-			mensajeria.sendMail();
+			mensajeria.sendMailWithFile();
 			
 		}catch (Exception e) {
 			// TODO: handle exception

@@ -6,7 +6,7 @@
 
 <%@ include file="jsp/header/banner.jsp" %>
 
-<body id="mensajeria" class="container">
+<body id="mensajeria" class="container" style="font-family: "Source Sans Pro";">
  	<section class="row justify-content-center">
  		<article class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
  			<%@ include file="jsp/body/secciones.jsp" %>

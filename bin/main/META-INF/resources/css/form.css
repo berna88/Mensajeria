@@ -130,7 +130,8 @@
 }
 
 .ui-datepicker .ui-datepicker-title {
-    margin: unset;
+    
+    display: flex;
 }
 
 .ui-datepicker select.ui-datepicker-month{

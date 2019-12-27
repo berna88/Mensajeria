@@ -1,5 +1,7 @@
 package com.consistent.cuervo.mensajeria.models;
 
+import java.io.File;
+
 import com.consistent.cuervo.mensajeria.email.SendMail;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -24,7 +26,16 @@ public class Mensajeria {
 	private String descripcionServicio;
 	private String fromMensajeria;
 	private String correoRemitente;
+	private File evidencia;
 	
+	
+	
+	public File getEvidencia() {
+		return evidencia;
+	}
+	public void setEvidencia(File evidencia) {
+		this.evidencia = evidencia;
+	}
 	public String getCorreoRemitente() {
 		return correoRemitente;
 	}
@@ -187,12 +198,47 @@ public class Mensajeria {
 	}
 	
 	public void sendMail() {
-		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente, "Mensajeria [solicitante=" + solicitante + ", tipoServicio=" + tipoServicio + ", fechaSolicitud="
-				+ fechaSolicitud + ", fechaRequerida=" + fechaRequerida + ", fechaDestinaratio=" + fechaDestinaratio
-				+ ", fechaRemitente=" + fechaRemitente + ", numeroExterior=" + numeroExterior + ", estado=" + estado
-				+ ", numeroInterior=" + numeroInterior + ", ciudadMunicipio=" + ciudadMunicipio + ", telefono="
-				+ telefono + ", codigoPostal=" + codigoPostal + ", horarioAtencion=" + horarioAtencion + ", colonia="
-				+ colonia + ", calle=" + calle + ", descripcionServicio=" + descripcionServicio + "]", null);
+		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Interior" ,""
+				+ "<h4>Solicitante: "+solicitante+"<h4>"
+				+ "<h4>Tipo de servicio: "+tipoServicio+"<h4>"
+				+ "<h4>Fecha de solicitud: "+fechaSolicitud+"<h4>"
+				+ "<h4>Fecha requerida: "+fechaRequerida+"<h4>"
+				+ "<h4>Destinatario: "+fechaDestinaratio+"<h4>"
+				+ "<h4>Remitente: "+fechaRemitente+"<h4>"
+				+ "<h4>Numero Exterior: "+numeroExterior+"<h4>"
+				+ "<h4>Estado: "+estado+"<h4>"
+				+ "<h4>Numero Interior: "+numeroInterior+"<h4>"
+				+ "<h4>Ciudad / Municipio: "+ciudadMunicipio+"<h4>"
+				+ "<h4>Telefono: "+telefono+"<h4>"
+				+ "<h4>Codigo Postal: "+codigoPostal+"<h4>"
+				+ "<h4>Horario Atencion: "+horarioAtencion+"<h4>"
+				+ "<h4>Colonia: "+colonia+"<h4>"
+				+ "<h4>Calle: "+calle+"<h4>"
+				+ "<h4>Descripción servicio: "+descripcionServicio+"<h4>", null);
+		if(enviado) {
+			log.info("Se envio el correo correctamente");
+		}else {
+			log.info("No se envio correo");
+		}
+	}
+	public void sendMailWithFile() {
+		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Cedis" ,""
+				+ "<h4>Solicitante: "+solicitante+"<h4>"
+				+ "<h4>Tipo de servicio: "+tipoServicio+"<h4>"
+				+ "<h4>Fecha de solicitud: "+fechaSolicitud+"<h4>"
+				+ "<h4>Fecha requerida: "+fechaRequerida+"<h4>"
+				+ "<h4>Destinatario: "+fechaDestinaratio+"<h4>"
+				+ "<h4>Remitente: "+fechaRemitente+"<h4>"
+				+ "<h4>Numero Exterior: "+numeroExterior+"<h4>"
+				+ "<h4>Estado: "+estado+"<h4>"
+				+ "<h4>Numero Interior: "+numeroInterior+"<h4>"
+				+ "<h4>Ciudad / Municipio: "+ciudadMunicipio+"<h4>"
+				+ "<h4>Telefono: "+telefono+"<h4>"
+				+ "<h4>Codigo Postal: "+codigoPostal+"<h4>"
+				+ "<h4>Horario Atencion: "+horarioAtencion+"<h4>"
+				+ "<h4>Colonia: "+colonia+"<h4>"
+				+ "<h4>Calle: "+calle+"<h4>"
+				+ "<h4>Descripción servicio: "+descripcionServicio+"<h4>", evidencia);
 		if(enviado) {
 			log.info("Se envio el correo correctamente");
 		}else {

@@ -57,7 +57,7 @@
 </div>
 <!-- Fin de seccion de pasos -->  
 <!--Seccion formulario -->      
-	<div class="row justify-content-center">
+	<div class="row justify-content-center" style="font-family: "Source Sans Pro";">
 		<div class="col-12 col-sm-12 col-md-10">
 			<form id="form-vacations" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
@@ -70,7 +70,7 @@
 						    			<input type="text" class="form-control" id="titulo" value="<%=nombreCompleto%>" name="<portlet:namespace />solicitante" disabled="disabled">
 						    		</div>
 						    		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
-						    			<label class="text-white" for="">Tipo de servicio:</label>
+						    			<label class="text-white" for="">Tipo de servicio:<span class="yellow">*</span></label>
 					    		    	<div class="select-area formulario-select" style="width: 100% !important">
 					    	  	    		<select class="custom-select" name="<portlet:namespace />tipoServicio">
 					    						<option value="normal" selected>Normal</option>
@@ -81,7 +81,7 @@
 						    		<section class="container-flex col-md-12 col-lg-12 col-xl-12">
 					                	<div class="ancho-date mb-2">
 					                		<label class="text-white" for="FechaDeSolicitud" >
-												Fecha de solicitud*
+												Fecha de solicitud<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
 									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
@@ -89,7 +89,7 @@
 					                	</div>
 					                	<div class="ancho-date mb-2">
 					                		<label class="text-white" for="FechaRequerida" >
-												Fecha requerida:*
+												Fecha requerida:<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
 												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
@@ -111,55 +111,55 @@
                     		<div class="row">
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<%if(tipoSelect.equalsIgnoreCase("Enviar")){ %>
-		         					<label for="destinatario" class="text-white">Destinatario:</label>
+		         					<label for="destinatario" class="text-white">Destinatario:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />Destinatario" autocomplete="off" required/>
 		                    		<% }else{%>
-		                    		<label for="Remitente" class="text-white">Remitente:</label>
+		                    		<label for="Remitente" class="text-white">Remitente:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />Remitente" autocomplete="off" required/>
 		                    		<% } %>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="numeroExterior" class="text-white">Número Exterior:</label>
+		                           	<label for="numeroExterior" class="text-white">Número Exterior:<span class="yellow">*</span></label>
 		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroExterior" autocomplete="off" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="estado" class="text-white">Estado:</label>
+		         					<label for="estado" class="text-white">Estado:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" autocomplete="off" required/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="numeroInterior" class="text-white">Número Interior:</label>
+		                           	<label for="numeroInterior" class="text-white">Número Interior:<span class="yellow">*</span></label>
 		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:</label>
+		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />ciudadMunicipio" autocomplete="off" required/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="teléfono" class="text-white">Teléfono:</label>
+		                           	<label for="teléfono" class="text-white">Teléfono:<span class="yellow">*</span></label>
 		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono" autocomplete="off" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="codigoPortal" class="text-white">Código Postal:</label>
+		         					<label for="codigoPortal" class="text-white">Código Postal:<span class="yellow">*</span></label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />codigoPostal" autocomplete="off" required/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="horarioAtencion" class="text-white">Horario de atención:</label>
+		                           	<label for="horarioAtencion" class="text-white">Horario de atención:<span class="yellow">*</span></label>
 		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />horarioAtencion" autocomplete="off" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
 		                        		<div class="col-12">
-				         					<label for="colonia" class="text-white">Colonia:</label>
+				         					<label for="colonia" class="text-white">Colonia:<span class="yellow">*</span></label>
 				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia" autocomplete="off" required/>
 			                    		</div>
 			                    		<div class="col-12">
-				         					<label for="calle" class="text-white">Calle:</label>
+				         					<label for="calle" class="text-white">Calle:<span class="yellow">*</span></label>
 		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" autocomplete="off" required/>
 			                    		</div>
 		                    		</div>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:</label>
+			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:<span class="yellow">*</span></label>
 			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio" autocomplete="off" required></textarea>  
 		                        </div>
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
