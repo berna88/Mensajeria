@@ -34,6 +34,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"com.liferay.portlet.display-category=category.sample",
+		"com.liferay.portlet.header-portlet-css=/css/form.css",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"com.liferay.portlet.header-portlet-css=/css/jquery-ui.css",
 		"com.liferay.portlet.footer-portlet-javascript=/js/jquery-ui.js",
@@ -43,6 +44,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.name=" + MensajeriaPortletKeys.MENSAJERIA,
 		"javax.portlet.resource-bundle=content.Language",
+		"javax.portlet.init-param.add-process-action-success-action=false",
 		"javax.portlet.security-role-ref=power-user,user"
 	},
 	service = Portlet.class

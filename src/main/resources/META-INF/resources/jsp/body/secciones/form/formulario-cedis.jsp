@@ -26,6 +26,57 @@
 	width: 100%;
 	}
 }
+/**** CALENDAR ***/
+.ui-datepicker .ui-datepicker-header {
+    background: none;
+    border: none;
+}
+
+.ui-widget.ui-widget-content {
+    border: 1px solid rgb(205, 184, 116);
+    background: black;
+    border-radius: 15px;
+}
+
+.ui-state-default {
+	border: unset !important;
+    background: none !important;
+    color: #FFFFFF !important;
+}
+
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight {
+    border: unset !important;
+    background: #CDB874 !important;
+    color: black !important;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+    text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    
+    display: flex;
+}
+
+.ui-datepicker select.ui-datepicker-month{
+	margin-right: 10px;
+}
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+    width: 47%;
+    background: black;
+    color: white;
+    border: 1px solid #CDB874;
+}
+
+.ui-datepicker-calendar thead {
+	border-top: 1px solid #CDB874;
+}
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
 <% String tipoSelect = (String) request.getAttribute("selectCedis"); %>
@@ -115,59 +166,59 @@
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<%if(tipoSelect.equalsIgnoreCase("Enviar")){ %>
 		         					<label for="destinatario" class="text-white">Destinatario:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />Destinatario" autocomplete="off"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />Destinatario" required="required"/>
 		                    		<% }else{%>
 		                    		<label for="Remitente" class="text-white">Remitente:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />Remitente" autocomplete="off"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />Remitente" required="required"/>
 		                    		<% } %>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroExterior" class="text-white">Número Interior:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="estado" class="text-white">Estado:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" autocomplete="off"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" required="required"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Teléfono:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />telefono" autocomplete="off"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />telefono" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Ciudad / Municipio:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />ciudadMunicipio" autocomplete="off"> 
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />ciudadMunicipio" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="ciudadMunicipio" class="text-white">Horario de atención:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />horarioAtencion" autocomplete="off"/>
+		                    		<input class="form-control" type="text" name="<portlet:namespace />horarioAtencion" required="required"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="teléfono" class="text-white">Código Postal:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />codigoPostal" autocomplete="off"> 
+		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />codigoPostal" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="codigoPortal" class="text-white">Evidencia de producto terminado:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="file" name="<portlet:namespace />evidenciaProducto" autocomplete="off"/>
+		                    		<input class="form-control" type="file" name="<portlet:namespace />evidenciaProducto" required="required"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
 		                        		<div class="col-12">
 				         					<label for="colonia" class="text-white">Colonia:<span class="yellow">*</span></label>
-				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia" autocomplete="off"/>
+				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia" required="required"/>
 			                    		</div>
 			                    		<div class="col-12">
 				         					<label for="calle" class="text-white">Calle:<span class="yellow">*</span></label>
-		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" autocomplete="off"/>
+		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" required="required"/>
 			                    		</div>
 			                    		<div class="col-12">
 				         					<label for="calle" class="text-white">Número Exterior:<span class="yellow">*</span></label>
-		                    				<input class="form-control" type="text" name="<portlet:namespace />numeroExterior" autocomplete="off"/>
+		                    				<input class="form-control" type="text" name="<portlet:namespace />numeroExterior" required="required"/>
 			                    		</div>
 		                    		</div>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:<span class="yellow">*</span></label>
-			                        <textarea class="form-control" rows="5" id="comment" style="height: 165px;resize: none;" name="<portlet:namespace />descripcionServicio" autocomplete="off"></textarea>  
+			                        <textarea class="form-control" rows="5" id="comment" style="height: 165px;resize: none;" name="<portlet:namespace />descripcionServicio" required="required"></textarea>  
 		                        </div>
 		                        
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">

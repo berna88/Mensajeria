@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="tab-pane fade active" id="pills-seccion1" role="tabpanel" aria-labelledby="pills-seccion-tab1">
+<div class="tab-pane fade" id="pills-seccion1" role="tabpanel" aria-labelledby="pills-seccion-tab1">
 	<section class="row align-items-center justify-content-center no-gutters" style="height: auto;">
 		<article class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 mt-50">
 			<h6>Tipo de servicio:</h6>

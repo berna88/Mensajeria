@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="tab-pane fade active" id="pills-seccion2" role="tabpanel" aria-labelledby="pills-seccion-tab2">
+<div class="tab-pane fade" id="pills-seccion2" role="tabpanel" aria-labelledby="pills-seccion-tab2">
 	<section class="row align-items-center justify-content-center no-gutters" style="height: auto;">
 		<article class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3">
 			<img class="mb-3" alt="" src="<%=request.getContextPath()+"/img/doc-cuervo.svg"%>" style="width: 120px;display: block;margin: auto;">
