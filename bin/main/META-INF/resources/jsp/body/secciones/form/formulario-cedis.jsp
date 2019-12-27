@@ -119,7 +119,7 @@
 		                    		<% } %>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="numeroExterior" class="text-white">Número Exterior:</label>
+		                           	<label for="numeroExterior" class="text-white">Número Interior:</label>
 		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroExterior" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
@@ -127,24 +127,24 @@
 		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="numeroInterior" class="text-white">Número Interior:</label>
+		                           	<label for="numeroInterior" class="text-white">Teléfono:</label>
 		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:</label>
+		                           	<label for="numeroInterior" class="text-white">Ciudad / Municipio:</label>
+		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" autocomplete="off"> 
+		                        </div>
+		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+		         					<label for="ciudadMunicipio" class="text-white">Horario de atención:</label>
 		                    		<input class="form-control" type="text" name="<portlet:namespace />ciudadMunicipio" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="teléfono" class="text-white">Teléfono:</label>
+		                           	<label for="teléfono" class="text-white">Código Postal:</label>
 		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono" autocomplete="off"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		         					<label for="codigoPortal" class="text-white">Código Postal:</label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />codigoPostal" autocomplete="off"/>
-		                        </div>
-		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-		                           	<label for="horarioAtencion" class="text-white">Horario de atención:</label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />horarioAtencion" autocomplete="off"> 
+		         					<label for="codigoPortal" class="text-white">Evidencia de producto terminado:</label>
+		                    		<input class="form-control" type="file" name="<portlet:namespace />codigoPostal" autocomplete="off"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
@@ -156,11 +156,15 @@
 				         					<label for="calle" class="text-white">Calle:</label>
 		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" autocomplete="off"/>
 			                    		</div>
+			                    		<div class="col-12">
+				         					<label for="calle" class="text-white">Número Exterior:</label>
+		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" autocomplete="off"/>
+			                    		</div>
 		                    		</div>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 			                        <label for="descripcionServicio" class="text-white">Descripción del servicio:</label>
-			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio" autocomplete="off"></textarea>  
+			                        <textarea class="form-control" rows="5" id="comment" style="height: 165px;resize: none;" name="<portlet:namespace />descripcionServicio" autocomplete="off"></textarea>  
 		                        </div>
 		                        
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
