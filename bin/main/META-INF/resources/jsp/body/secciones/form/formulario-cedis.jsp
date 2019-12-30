@@ -6,6 +6,7 @@
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
 <style>
+
 .ancho-date{
 	width: 46%;
 }
@@ -27,6 +28,9 @@
 	}
 }
 /**** CALENDAR ***/
+.ui-datepicker{
+	top: 271px !important;
+}
 .ui-datepicker .ui-datepicker-header {
     background: none;
     border: none;
@@ -51,6 +55,9 @@
     background: #CDB874 !important;
     color: black !important;
 }
+.ui-widget-content{
+padding: 15px;
+}
 
 .ui-datepicker td span,
 .ui-datepicker td a {
@@ -60,6 +67,7 @@
 .ui-datepicker .ui-datepicker-title {
     
     display: flex;
+    justify-content: center;
 }
 
 .ui-datepicker select.ui-datepicker-month{
@@ -76,6 +84,28 @@
 
 .ui-datepicker-calendar thead {
 	border-top: 1px solid #CDB874;
+}
+.ui-datepicker .ui-datepicker-title {
+    margin: 0; 
+    margin-top: 20px !important;
+}
+.ui-datepicker-title button {
+	position: absolute !important;
+    right: -10px;
+    top: -18px;
+    left: initial !important;
+}
+.ui-datepicker-title select[data-event="change"] {
+	height: 27px;
+    padding: 0px 6px !important;
+    margin-bottom: .7rem;
+    border-radius: 0px;
+}
+.ui-datepicker-calendar thead {
+	color: white;
+}
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    opacity: .7 !important;
 }
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
@@ -198,7 +228,7 @@
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="codigoPortal" class="text-white">Evidencia de producto terminado:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="file" name="<portlet:namespace />evidenciaProducto" required="required"/>
+		                    		<input id="fileMensajeria" class="form-control" type="file" name="<portlet:namespace />evidenciaProducto" required="required"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
@@ -324,112 +354,4 @@ function fixStepIndicator(n) {
   //and adds the "active" class on the current step:
   x[n].className += " active";
 }
-</script>
-<script>
-
-	$(function(){
-		
-		$.datepicker.regional['es'] = {
-				closeText: 'Cerrar',
-				prevText: '< Ant',
-				nextText: 'Sig >',
-				currentText: 'Hoy',
-				monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-				monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-				dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-				dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-				dayNamesMin: ['D','L','M','M','J','V','S'],
-				weekHeader: 'Sm',
-				dateFormat: 'dd/mm/yy',
-				firstDay: 1,
-				isRTL: false,
-				showMonthAfterYear: false,
-				yearSuffix: ''
-		};
-		
-		var inputFecha = $( "#fechaInicio" );
-		var changeCloseButton = function(input) {
-			console.log('fechaInicio');
-			setTimeout(function() {
-				console.log('changeCloseButton ', input);
-		        var headerPanel = inputFecha.datepicker( "widget" ).find( ".ui-datepicker-title" );
-		        var closeBtn = $('<button style=\"position:relative; left: 90%;border: none;background: none; color: #CDB874;outline: none;padding: 10px;\">X</button>');
-		        
-		        closeBtn.bind("click", function() {
-		        	$( "#fechaRegreso" ).datepicker( "hide" );
-		        });
-		        
-		        closeBtn.prependTo(headerPanel);
-		    }, 1000 );
-		};
-		
-		$( "#fechaInicio" ).datepicker({
-			changeMonth: true,
-            changeYear: true,
-            hideIfNoPrevNext: true,
-            minDate: 0,
-            dateFormat: "yy-mm-dd",
-			beforeShow: changeCloseButton,			
-			onChangeMonthYear: changeCloseButton
-		}).focus(function () {
-	        $(".ui-datepicker-next").hide();
-	        $(".ui-datepicker-prev").hide();
-	    });
-		
-		$("#datepicker2").datepicker({
-			 showButtonPanel: true,
-			 beforeShow: function( input ) {
-			 	setTimeout(function() {
-			   		var buttonPane = $( input ).datepicker( "widget" ).find( ".ui-datepicker-buttonpane" );
-
-			   		var btn = $('Clear');
-			   		btn.unbind("click").bind("click", function () { 
-			   			$.datepicker._clearDate( input );
-			  		});
-
-			   		btn.appendTo( buttonPane );
-
-			 }, 1 );
-			      }
-			});
-		
-		$( "#fechaRegreso" ).datepicker({
-			changeMonth: true,
-            changeYear: true,
-            hideIfNoPrevNext: true,
-            minDate: 0,
-            dateFormat: "yy-mm-dd",
-            beforeShow: function( input ) {
-            	console.log('fechaRegreso beforeShow');
-            	setTimeout(function() {
-    		        var headerPanel = $(input).datepicker( "widget" ).find( ".ui-datepicker-title" );
-    		        var closeBtn = $('<button style=\"position:relative; left: 90%;border: none;background: none; color: #CDB874;outline: none;padding: 10px;\">X</button>');
-    		        
-    		        closeBtn.bind("click", function() {
-    		        	$( "#fechaRegreso" ).datepicker( "hide" );
-    		        });
-    		        
-    		        closeBtn.prependTo(headerPanel);
-    		    }, 300 );
-            },
-			onChangeMonthYear: function( input ) {
-				console.log('fechaRegreso onChangeMonthYear');
-				setTimeout(function() {
-			        var headerPanel = $(input).datepicker( "widget" ).find( ".ui-datepicker-title" );
-			        var closeBtn = $('<button style=\"position:relative; left: 90%;border: none;background: none; color: #CDB874;outline: none;padding: 10px;\">X</button>');
-			        
-			        closeBtn.bind("click", function() {
-			        	$( "#fechaRegreso" ).datepicker( "hide" );
-			        });
-			        
-			        closeBtn.prependTo(headerPanel);
-			    }, 200 );
-            },
-		}).focus(function () {
-	        $(".ui-datepicker-next").hide();
-	        $(".ui-datepicker-prev").hide();
-	    });		
-		
-		$.datepicker.setDefaults($.datepicker.regional['es']);
-	});
 </script>

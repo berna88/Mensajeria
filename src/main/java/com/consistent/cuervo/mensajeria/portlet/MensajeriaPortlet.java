@@ -38,6 +38,7 @@ import org.osgi.service.component.annotations.Component;
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"com.liferay.portlet.header-portlet-css=/css/jquery-ui.css",
 		"com.liferay.portlet.footer-portlet-javascript=/js/jquery-ui.js",
+		"com.liferay.portlet.footer-portlet-javascript=/js/calendar.js",
 		"com.liferay.portlet.instanceable=true",
 		"javax.portlet.display-name=Mensajeria",
 		"javax.portlet.init-param.template-path=/",
