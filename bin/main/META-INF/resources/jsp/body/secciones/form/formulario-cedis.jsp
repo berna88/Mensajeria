@@ -70,6 +70,7 @@
   .container-flex{
 	display: flex;
 	flex-direction: column;
+	
 	} 
 	.ancho-date{
 	width: 100%;
@@ -300,7 +301,7 @@ padding: 15px;
 		                        </div>
 		                        
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
-				                	<p id="error" style="color: red;"></p>
+				                	<p id="error" style="color: red;">Necesitas llenar todos los campos</p>
 				                    <button onclick="enviar()" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
@@ -407,6 +408,9 @@ function fixStepIndicator(n) {
 }
 </script>
 <script>
+$(document).ready(function () {
+	$('#error').hide();
+});
 function enviar(){
 	var numeroExterior = document.getElementById("numeroExterior");
 	var estado = document.getElementById("estado");
@@ -419,7 +423,12 @@ function enviar(){
 	var comment = document.getElementById("comment");
 	var error = document.getElementById("error");
 	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity()) {   
-		error.innerHTML = "Necesitas llenar todos los campos";
+		$(document).ready(function () {
+	    	  $('#error').show();
+	    	  setTimeout(function () {
+	    	      $('#error').hide();
+	    	  }, 3000);
+	    	});
 		    return false;
 		  } else {
 		    modal.show();
@@ -452,15 +461,6 @@ function enviar(){
 	       width: 650
 	     }
 	   ).render();
-
-	   
-
-	   Y.one('#btn_env').on(
-	     'click',
-	     function() {
-	   	 	
-	     }
-	   );
 	 }
 	);
 

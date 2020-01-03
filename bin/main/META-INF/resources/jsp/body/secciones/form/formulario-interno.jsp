@@ -154,6 +154,7 @@ padding: 15px;
 }
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>
 <% String tipoSelect = (String) request.getAttribute("select"); %>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
@@ -189,7 +190,7 @@ padding: 15px;
 <!--Seccion formulario -->      
 	<div class="row justify-content-center" style="font-family: "Source Sans Pro";">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="form-vacations" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post" onsubmit="return validateForm()">
+			<form id="formInterior" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
@@ -214,7 +215,7 @@ padding: 15px;
 												Fecha de solicitud<span class="yellow">*</span>
 											</label>
 											<div class="input-group date mb-3 ">
-									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off" />
+									 			<input id="datepicker1" type="text" class="form-control form-control-sm" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off" />
 											</div>
 					                	</div>
 					                	<div class="ancho-date mb-2">
@@ -222,7 +223,7 @@ padding: 15px;
 												Fecha requerida:<span class="yellow">*</span>
 											</label>
 											<div class="input-group date mb-3 ">
-												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off" />
+												<input id="datepicker2" type="text" class="form-control form-control-sm" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off" />
 											</div>
 					                	</div>
 									</section>
@@ -293,7 +294,7 @@ padding: 15px;
 			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio" required></textarea>  
 		                        </div>
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
-				                	<p id="error" style="color: red;"></p>
+				                	<p id="error" style="color: red;">Necesitas llenar todos los campos</p>
 				                    <button onclick="enviar()" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
@@ -309,10 +310,17 @@ padding: 15px;
 <script src='<%=request.getContextPath()+"/js/formSteps.js"%>'>
 </script>
  --%>
+<script src='<%=request.getContextPath()+"/js/gijgo.min.js"%>'></script>
 <div class="yui3-skin-sam">
 	 <div id="modal"></div>
 </div>
 <script>
+$('#datepicker1').datepicker({
+    uiLibrary: 'bootstrap4'
+});
+$('#datepicker2').datepicker({
+    uiLibrary: 'bootstrap4'
+});
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -341,7 +349,7 @@ function nextPrev(n) {
   	// This function will figure out which tab to display
   	var x = document.getElementsByClassName("tab");
 	var i, s = document.getElementsByClassName("md-step");
-	console.log(s);
+	
  
   	//... and adds the "active" class on the current step:
   	x[n].className += " active";
@@ -351,7 +359,7 @@ function nextPrev(n) {
     s[1].className = s[1].className.replace("active", "");
     s[2].className = s[2].className.replace("md-step", "md-step active");
   }
-  console.log(s);
+ 
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
@@ -393,13 +401,15 @@ function fixStepIndicator(n) {
   	var i, x = document.getElementsByClassName("md-step");
   	for (i = 0; i < x.length; i++) {
     x[i].className = x[i].className.replace("active", "");
-    console.log(x);
   }
   //and adds the "active" class on the current step:
   x[n].className += " active";
 }
 </script>
 <script>
+$(document).ready(function () {
+		$('#error').hide();
+	});
 function enviar(){
 	var numeroExterior = document.getElementById("numeroExterior");
 	var estado = document.getElementById("estado");
@@ -411,12 +421,17 @@ function enviar(){
 	var calle = document.getElementById("calle");
 	var comment = document.getElementById("comment");
 	var error = document.getElementById("error");
+	
 	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity()) {
-		    error.innerHTML = "Necesitas llenar todos los campos";
+		$(document).ready(function () {
+		    	  $('#error').show();
+		    	  setTimeout(function () {
+		    	      $('#error').hide();
+		    	  }, 3000);
+		    	});
 		    return false;
 		  } else {
 		    modal.show();
-		    return true;
 		  } 
 	
 }
@@ -447,15 +462,6 @@ function enviar(){
 	       width: 650
 	     }
 	   ).render();
-
-	   
-
-	   Y.one('#btn_env').on(
-	     'click',
-	     function() {
-	   	 	
-	     }
-	   );
 	 }
 	);
 
