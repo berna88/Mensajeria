@@ -6,6 +6,56 @@
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
 <style>
+#modal .modal-dialog {
+   z-index: 1!important;
+}
+
+#modal .modal-footer .btn-toolbar>.btn:first-child {
+   display: block;
+   margin: auto;
+   background: #CCB874;
+   border-radius: 0;
+   font-family: "Work Sans";
+   font-weight: 600;
+   color: #000 !important;
+   font-size: 18px;
+   line-height: 48px;
+   padding: 0 30px;
+   width: auto;
+}
+#modal .btn-toolbar-content .yui3-widget .component .btn-toolbar{
+   display: block;
+   margin: auto;
+}
+#modal .modal-content {
+   overflow: hidden;
+   background: black;
+   border: solid 1px #cbb874;
+   height: 300px;
+   border-radius: 1.3rem;
+}
+#modal .modal-header {
+
+   border: none;
+   margin-top: 5%;
+}
+
+#modal .modal-body {
+   text-align: center;
+   color: white;
+}
+
+#modal .modal-body h3 {
+   font-size: 20px;
+}
+
+#modal .modal-footer {
+   border: none;
+}
+#modal .yui3-widget-ft.modal-footer {
+   display: block;
+   margin: auto;
+}
 .ancho-date{
 	width: 46%;
 }
@@ -24,7 +74,7 @@
 }
 /**** CALENDAR ***/
 .ui-datepicker{
-	top: 271px !important;
+	top: 325px !important;
 }
 .ui-datepicker .ui-datepicker-header {
     background: none;
@@ -84,7 +134,7 @@ padding: 15px;
     margin: 0; 
     margin-top: 20px !important;
 }
-.ui-datepicker-title button {
+.ui-datepicker-header > button {
 	position: absolute !important;
     right: -10px;
     top: -18px;
@@ -139,7 +189,7 @@ padding: 15px;
 <!--Seccion formulario -->      
 	<div class="row justify-content-center" style="font-family: "Source Sans Pro";">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="form-vacations" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
+			<form id="form-vacations" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post" onsubmit="return validateForm()">
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
@@ -163,16 +213,16 @@ padding: 15px;
 					                		<label class="text-white" for="FechaDeSolicitud" >
 												Fecha de solicitud<span class="yellow">*</span>
 											</label>
-											<div class="input-group mb-3 ">
-									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
+											<div class="input-group date mb-3 ">
+									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off" />
 											</div>
 					                	</div>
 					                	<div class="ancho-date mb-2">
 					                		<label class="text-white" for="FechaRequerida" >
 												Fecha requerida:<span class="yellow">*</span>
 											</label>
-											<div class="input-group mb-3 ">
-												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
+											<div class="input-group date mb-3 ">
+												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off" />
 											</div>
 					                	</div>
 									</section>
@@ -200,41 +250,41 @@ padding: 15px;
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroExterior" class="text-white">Número Exterior:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroExterior" required> 
+		                        	<input class="form-control" id="numeroExterior" type="text" name="<portlet:namespace />numeroExterior" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="estado" class="text-white">Estado:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" required/>
+		                    		<input class="form-control" id="estado" type="text" name="<portlet:namespace />estado" required/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Número Interior:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" required> 
+		                        	<input class="form-control" id="numeroInterior" type="text" name="<portlet:namespace />numeroInterior" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="ciudadMunicipio" class="text-white">Ciudad / Municipio:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />ciudadMunicipio" required/>
+		                    		<input class="form-control" id="ciudadMunicipio" type="text" name="<portlet:namespace />ciudadMunicipio" required/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="teléfono" class="text-white">Teléfono:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono" required> 
+		                        	<input class="form-control" id="telefono" type="tel" name="<portlet:namespace />telefono" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="codigoPortal" class="text-white">Código Postal:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />codigoPostal" required/>
+		                    		<input class="form-control" id="codigoPostal" type="number" name="<portlet:namespace />codigoPostal" required/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="horarioAtencion" class="text-white">Horario de atención:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />horarioAtencion" required> 
+		                        	<input class="form-control" id="horarioAtencion" type="text" name="<portlet:namespace />horarioAtencion" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<div class="row">
 		                        		<div class="col-12">
 				         					<label for="colonia" class="text-white">Colonia:<span class="yellow">*</span></label>
-				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia" required/>
+				                    		<input class="form-control" id="colonia" type="text" name="<portlet:namespace />colonia" required/>
 			                    		</div>
 			                    		<div class="col-12">
 				         					<label for="calle" class="text-white">Calle:<span class="yellow">*</span></label>
-		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" required/>
+		                    				<input class="form-control" id="calle" type="text" name="<portlet:namespace />calle" required/>
 			                    		</div>
 		                    		</div>
 		                        </div>
@@ -243,7 +293,8 @@ padding: 15px;
 			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio" required></textarea>  
 		                        </div>
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
-				                    <button class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
+				                	<p id="error" style="color: red;"></p>
+				                    <button onclick="enviar()" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
                 		</div><!-- Fin de col -->
@@ -258,7 +309,9 @@ padding: 15px;
 <script src='<%=request.getContextPath()+"/js/formSteps.js"%>'>
 </script>
  --%>
- 
+<div class="yui3-skin-sam">
+	 <div id="modal"></div>
+</div>
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
@@ -345,4 +398,66 @@ function fixStepIndicator(n) {
   //and adds the "active" class on the current step:
   x[n].className += " active";
 }
+</script>
+<script>
+function enviar(){
+	var numeroExterior = document.getElementById("numeroExterior");
+	var estado = document.getElementById("estado");
+	var ciudadMunicipio = document.getElementById("ciudadMunicipio");
+	var telefono = document.getElementById("telefono");
+	var codigoPostal = document.getElementById("codigoPostal");
+	var horarioAtencion = document.getElementById("horarioAtencion");
+	var colonia = document.getElementById("colonia");
+	var calle = document.getElementById("calle");
+	var comment = document.getElementById("comment");
+	var error = document.getElementById("error");
+	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity()) {
+		    error.innerHTML = "Necesitas llenar todos los campos";
+		    return false;
+		  } else {
+		    modal.show();
+		    return true;
+		  } 
+	
+}
+</script>
+<script>
+	var modal;
+	var img= '<%=request.getContextPath()+"/img/notificuervo.svg" %>';
+	YUI().use(
+	 'aui-modal',
+	 function(Y) {
+	   modal = new Y.Modal(
+	     {
+	       bodyContent: '<h3>Tu solicitud ha sido enviada con éxito</h3>',
+	       centered: true,
+	       destroyOnHide: false,
+	       headerContent: '<img style =" display: block; margin: auto;"src="'+img+'" alt="" height="42" width="42">',
+	       modal: true,
+	       render: '#modal',
+	       resizable: {
+	         handles: 'b, r'
+	       },
+	       toolbars: {
+	         body: [
+	           
+	         ]
+	       },
+	       visible: false,
+	       width: 650
+	     }
+	   ).render();
+
+	   
+
+	   Y.one('#btn_env').on(
+	     'click',
+	     function() {
+	   	 	
+	     }
+	   );
+	 }
+	);
+
+
 </script>

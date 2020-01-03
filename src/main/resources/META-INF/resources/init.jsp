@@ -19,5 +19,5 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%
 Empleado empleado = (Empleado) request.getAttribute("Empleado"); 
 String nombreCompleto = empleado.getNombre() +" "+empleado.getApellidos();
-System.out.print("Nombre completo: "+nombreCompleto);
+
 %>

@@ -11,12 +11,11 @@
 				  <option value="Enviar" class="option" selected>Enviar</option> 
 				  <option value="Recibir" class="option">Recibir</option>
 				</select>
-			
-				<!--<a href="${getFormInterno}" 
-				class="mt-50 border border-0 w-50 pt-1 pb-1 font-weight-normal text-center float-right" 
-				style="background: #cbb874;color: black;display: block;margin: auto;" 
-				>Solicitar</a>-->
+				<%if(!empleado.getNombre().isEmpty()) {%>
 				<button type="submit" class="mt-50 border border-0 float-right w-50 pt-1 pb-1 font-weight-normal" style="background-color: #cbb874;">Solicitar</button>
+				<%}else{ %>
+				<button type="submit" class="mt-50 border border-0 float-right w-50 pt-1 pb-1 font-weight-normal" style="background-color: #cbb874;" disabled>Solicitar</button>
+				<%} %>
 			</form>
 		</article>
 	</section>
