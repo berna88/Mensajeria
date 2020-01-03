@@ -252,27 +252,27 @@ padding: 15px;
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroExterior" class="text-white">Número Interior:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />numeroInterior" required="required"> 
+		                        	<input class="form-control" id="numeroInterior" type="text" name="<portlet:namespace />numeroInterior" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="estado" class="text-white">Estado:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />estado" required="required"/>
+		                    		<input class="form-control" id="estado" type="text" name="<portlet:namespace />estado" required="required"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Teléfono:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="tel" name="<portlet:namespace />telefono" required="required"> 
+		                        	<input class="form-control" id="telefono" type="tel" name="<portlet:namespace />telefono" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Ciudad / Municipio:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="text" name="<portlet:namespace />ciudadMunicipio" required="required"> 
+		                        	<input class="form-control" id="ciudadMunicipio" type="text" name="<portlet:namespace />ciudadMunicipio" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="ciudadMunicipio" class="text-white">Horario de atención:<span class="yellow">*</span></label>
-		                    		<input class="form-control" type="text" name="<portlet:namespace />horarioAtencion" required="required"/>
+		                    		<input class="form-control" id="horarioAtencion" type="text" name="<portlet:namespace />horarioAtencion" required="required"/>
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="codigoPostal" class="text-white">Código Postal:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="text" type="number" name="<portlet:namespace />codigoPostal" required="required"> 
+		                        	<input class="form-control" id="codigoPostal" type="number" name="<portlet:namespace />codigoPostal" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="codigoPortal" class="text-white">Evidencia de producto terminado:<span class="yellow">*</span></label>
@@ -282,15 +282,15 @@ padding: 15px;
 		                        	<div class="row">
 		                        		<div class="col-12">
 				         					<label for="colonia" class="text-white">Colonia:<span class="yellow">*</span></label>
-				                    		<input class="form-control" type="text" name="<portlet:namespace />colonia" required="required"/>
+				                    		<input id="colonia" class="form-control" type="text" name="<portlet:namespace />colonia" required="required"/>
 			                    		</div>
 			                    		<div class="col-12">
 				         					<label for="calle" class="text-white">Calle:<span class="yellow">*</span></label>
-		                    				<input class="form-control" type="text" name="<portlet:namespace />calle" required="required"/>
+		                    				<input id="calle" class="form-control" type="text" name="<portlet:namespace />calle" required="required"/>
 			                    		</div>
 			                    		<div class="col-12">
 				         					<label for="calle" class="text-white">Número Exterior:<span class="yellow">*</span></label>
-		                    				<input class="form-control" type="text" name="<portlet:namespace />numeroExterior" required="required"/>
+		                    				<input id="numeroExterior" class="form-control" type="text" name="<portlet:namespace />numeroExterior" required="required"/>
 			                    		</div>
 		                    		</div>
 		                        </div>
@@ -300,6 +300,7 @@ padding: 15px;
 		                        </div>
 		                        
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
+				                	<p id="error" style="color: red;"></p>
 				                    <button onclick="enviar()" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
@@ -407,11 +408,25 @@ function fixStepIndicator(n) {
 </script>
 <script>
 function enviar(){
-	//alert("Enviado");
-	modal.show();
+	var numeroExterior = document.getElementById("numeroExterior");
+	var estado = document.getElementById("estado");
+	var ciudadMunicipio = document.getElementById("ciudadMunicipio");
+	var telefono = document.getElementById("telefono");
+	var codigoPostal = document.getElementById("codigoPostal");
+	var horarioAtencion = document.getElementById("horarioAtencion");
+	var colonia = document.getElementById("colonia");
+	var calle = document.getElementById("calle");
+	var comment = document.getElementById("comment");
+	var error = document.getElementById("error");
+	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity()) {   
+		error.innerHTML = "Necesitas llenar todos los campos";
+		    return false;
+		  } else {
+		    modal.show();
+		    return true;
+		  } 
+	
 }
-</script>
-<script>
 	var modal;
 	var img= '<%=request.getContextPath()+"/img/notificuervo.svg" %>';
 	YUI().use(
