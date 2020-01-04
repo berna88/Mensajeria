@@ -169,6 +169,14 @@ background-color: #171717 !important;
 .gj-picker div[role="navigator"]{
 	color: #cbb874 !important;
 }
+.gj-datepicker [role=right-icon] {
+    cursor: pointer;
+    display: none !important;
+}
+.gj-picker-bootstrap table tr td.today div {
+    color: #cbb874 !important;
+    font-weight: 700;
+}
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>
