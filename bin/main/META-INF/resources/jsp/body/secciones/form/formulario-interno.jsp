@@ -152,6 +152,23 @@ padding: 15px;
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
     opacity: .7 !important;
 }
+.gj-picker-bootstrap{
+	border: 2px solid #cbb874 !important;
+	border-radius: 0px !important;
+	padding: 18px !important;
+}
+.gj-picker {
+background-color: #171717 !important;
+}
+.gj-picker table tbody tr{
+	color: white !important;
+}
+.gj-picker table thead{
+	color: white !important;
+}
+.gj-picker div[role="navigator"]{
+	color: #cbb874 !important;
+}
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>

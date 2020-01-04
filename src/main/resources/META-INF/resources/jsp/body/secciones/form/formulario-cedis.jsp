@@ -158,6 +158,7 @@ padding: 15px;
 }
 </style>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>
 <% String tipoSelect = (String) request.getAttribute("selectCedis"); %>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
@@ -217,7 +218,7 @@ padding: 15px;
 												Fecha de solicitud<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
-									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
+									 			<input id="datepicker1" type="text" class="form-control form-control-sm" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
 											</div>
 					                	</div>
 					                	<div class="ancho-date mb-2">
@@ -225,7 +226,7 @@ padding: 15px;
 												Fecha requerida:<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
-												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
+												<input id="datepicker2" type="text" class="form-control form-control-sm" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
 											</div>
 					                	</div>
 									</section>
@@ -320,7 +321,14 @@ padding: 15px;
  <div class="yui3-skin-sam">
 	 <div id="modal"></div>
 </div>
+<script src='<%=request.getContextPath()+"/js/gijgo.min.js"%>'></script>
 <script>
+$('#datepicker1').datepicker({
+    uiLibrary: 'bootstrap4'
+});
+$('#datepicker2').datepicker({
+    uiLibrary: 'bootstrap4'
+});
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
