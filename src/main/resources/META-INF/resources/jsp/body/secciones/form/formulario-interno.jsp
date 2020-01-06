@@ -153,7 +153,7 @@ padding: 15px;
     opacity: .7 !important;
 }
 .gj-picker-bootstrap{
-	border: 2px solid #cbb874 !important;
+	border: 1px solid #cbb874 !important;
 	border-radius: 0px !important;
 	padding: 18px !important;
 }
