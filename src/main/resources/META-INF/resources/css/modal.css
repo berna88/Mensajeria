@@ -1,0 +1,50 @@
+@charset "UTF-8";
+#modal .modal-dialog {
+   z-index: 1!important;
+}
+
+#modal .modal-footer .btn-toolbar>.btn:first-child {
+   display: block;
+   margin: auto;
+   background: #CCB874;
+   border-radius: 0;
+   font-family: "Work Sans";
+   font-weight: 600;
+   color: #000 !important;
+   font-size: 18px;
+   line-height: 48px;
+   padding: 0 30px;
+   width: auto;
+}
+#modal .btn-toolbar-content .yui3-widget .component .btn-toolbar{
+   display: block;
+   margin: auto;
+}
+#modal .modal-content {
+   overflow: hidden;
+   background: black;
+   border: solid 1px #cbb874;
+   height: 300px;
+   border-radius: 1.3rem;
+}
+#modal .modal-header {
+
+   border: none;
+   margin-top: 5%;
+}
+#modal .modal-body {
+   text-align: center;
+   color: white;
+}
+
+#modal .modal-body h3 {
+   font-size: 20px;
+}
+
+#modal .modal-footer {
+   border: none;
+}
+#modal .yui3-widget-ft.modal-footer {
+   display: block;
+   margin: auto;
+}

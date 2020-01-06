@@ -2,59 +2,16 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/general.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/form.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/calendar.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/modal.css"%>'>
+
 <%@ include file="/init.jsp" %>
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
 <style>
-#modal .modal-dialog {
-   z-index: 1!important;
-}
 
-#modal .modal-footer .btn-toolbar>.btn:first-child {
-   display: block;
-   margin: auto;
-   background: #CCB874;
-   border-radius: 0;
-   font-family: "Work Sans";
-   font-weight: 600;
-   color: #000 !important;
-   font-size: 18px;
-   line-height: 48px;
-   padding: 0 30px;
-   width: auto;
-}
-#modal .btn-toolbar-content .yui3-widget .component .btn-toolbar{
-   display: block;
-   margin: auto;
-}
-#modal .modal-content {
-   overflow: hidden;
-   background: black;
-   border: solid 1px #cbb874;
-   height: 300px;
-   border-radius: 1.3rem;
-}
-#modal .modal-header {
-   border: none;
-   margin-top: 5%;
-}
-
-#modal .modal-body {
-   text-align: center;
-   color: white;
-}
-
-#modal .modal-body h3 {
-   font-size: 20px;
-}
-
-#modal .modal-footer {
-   border: none;
-}
-#modal .yui3-widget-ft.modal-footer {
-   display: block;
-   margin: auto;
-}
 .ancho-date{
 	width: 46%;
 }
@@ -76,89 +33,7 @@
 	width: 100%;
 	}
 }
-/**** CALENDAR ***/
-.ui-datepicker{
-	top: 325px !important;
-}
-.ui-datepicker .ui-datepicker-header {
-    background: none;
-    border: none;
-}
-
-.ui-widget.ui-widget-content {
-    border: 1px solid rgb(205, 184, 116);
-    background: black;
-    border-radius: 15px;
-}
-
-.ui-state-default {
-	border: unset !important;
-    background: none !important;
-    color: #FFFFFF !important;
-}
-
-.ui-state-highlight, 
-.ui-widget-content .ui-state-highlight, 
-.ui-widget-header .ui-state-highlight {
-    border: unset !important;
-    background: #CDB874 !important;
-    color: black !important;
-}
-.ui-widget-content{
-padding: 15px;
-}
-
-.ui-datepicker td span,
-.ui-datepicker td a {
-    text-align: center;
-}
-
-.ui-datepicker .ui-datepicker-title {
-    
-    display: flex;
-    justify-content: center;
-}
-
-.ui-datepicker select.ui-datepicker-month{
-	margin-right: 10px;
-}
-
-.ui-datepicker select.ui-datepicker-month,
-.ui-datepicker select.ui-datepicker-year {
-    width: 47%;
-    background: black;
-    color: white;
-    border: 1px solid #CDB874;
-}
-
-.ui-datepicker-calendar thead {
-	border-top: 1px solid #CDB874;
-}
-.ui-datepicker .ui-datepicker-title {
-    margin: 0; 
-    margin-top: 20px !important;
-}
-.ui-datepicker-header > button {
-	position: absolute !important;
-    right: -10px;
-    top: -18px;
-    left: initial !important;
-}
-.ui-datepicker-title select[data-event="change"] {
-	height: 27px;
-    padding: 0px 6px !important;
-    margin-bottom: .7rem;
-    border-radius: 0px;
-}
-.ui-datepicker-calendar thead {
-	color: white;
-}
-.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
-    opacity: .7 !important;
-}
 </style>
-<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
-<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>
 <% String tipoSelect = (String) request.getAttribute("selectCedis"); %>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
@@ -322,12 +197,18 @@ padding: 15px;
 	 <div id="modal"></div>
 </div>
 <script src='<%=request.getContextPath()+"/js/gijgo.min.js"%>'></script>
+<script src='<%=request.getContextPath()+"/js/core.js"%>'></script>
+<script src='<%=request.getContextPath()+"/js/datepicker.js"%>'></script>
 <script>
 $('#datepicker1').datepicker({
-    uiLibrary: 'bootstrap4'
+    uiLibrary: 'bootstrap4',
+    locale: 'es-es',
+    format: 'dd/mm/yyyy'
 });
 $('#datepicker2').datepicker({
-    uiLibrary: 'bootstrap4'
+    uiLibrary: 'bootstrap4',
+    locale: 'es-es',
+    format: 'dd/mm/yyyy'
 });
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
@@ -444,6 +325,8 @@ function enviar(){
 		  } 
 	
 }
+</script>
+<script>
 	var modal;
 	var img= '<%=request.getContextPath()+"/img/notificuervo.svg" %>';
 	YUI().use(
@@ -471,6 +354,4 @@ function enviar(){
 	   ).render();
 	 }
 	);
-
-
 </script>
