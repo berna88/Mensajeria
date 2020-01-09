@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/modal.css"%>'>
+
 <%@ include file="/init.jsp" %>
 <!-- Banner -->  
 <%@ include file="../../../header/banner.jsp" %>
@@ -63,7 +64,7 @@
 <!--Seccion formulario -->      
 	<div class="row justify-content-center" style="font-family: "Source Sans Pro";">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="formInterior" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
+			<form id="formInterior" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post" onsubmit = "event.preventDefault(); myValidation();">
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
@@ -168,7 +169,7 @@
 		                        </div>
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
 				                	<p id="error" style="color: red;">Necesitas llenar todos los campos</p>
-				                    <button onclick="enviar()" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
+				                    <button id="enviarInterior" onclick="enviar()" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
                 		</div><!-- Fin de col -->
@@ -289,7 +290,8 @@ function fixStepIndicator(n) {
 $(document).ready(function () {
 		$('#error').hide();
 	});
-function enviar(){
+function myValidation(){
+	
 	var numeroExterior = document.getElementById("numeroExterior");
 	var estado = document.getElementById("estado");
 	var ciudadMunicipio = document.getElementById("ciudadMunicipio");
@@ -301,6 +303,7 @@ function enviar(){
 	var comment = document.getElementById("comment");
 	var error = document.getElementById("error");
 	
+    
 	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity()) {
 		$(document).ready(function () {
 		    	  $('#error').show();
@@ -311,8 +314,20 @@ function enviar(){
 		    return false;
 		  } else {
 		    modal.show();
+		  	
+		  	$(document).ready(function () {
+		    	  
+		    	  setTimeout(function () {
+		    	      send();
+		    	  }, 3000);
+		    	});
 		  } 
 	
+}
+function send(){
+	var url = '<%=sendInternoURL.toString()%>'; 
+    document.forms["formInterior"].action=url;
+	document.forms["formInterior"].submit();
 }
 </script>
 <script>

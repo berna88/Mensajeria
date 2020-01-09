@@ -104,14 +104,15 @@ public class MensajeriaPortlet extends MVCPortlet {
 	public void sendInterno(ActionRequest request, ActionResponse response) {
 				log.info("<--------- Form interno ---------->");
 		try {
-			String destinatarioRemitente = "";
+			String destinatarioResult = "";
+			String remitenteResult = "";
+			String mensaje = "";
 			String solicitante = empleado.getNombre()+ " " +  empleado.getApellidos();
 			String tipoServicio = (!ParamUtil.getString(request, "tipoServicio").equals(null))? ParamUtil.getString(request,"tipoServicio"):"";
 			String fechaSolicitud = (!ParamUtil.getString(request, "fechaSolicitud").equals(null))? ParamUtil.getString(request,"fechaSolicitud"):"";
 			String fechaRequerida = (!ParamUtil.getString(request, "fechaRequerida").equals(null))? ParamUtil.getString(request,"fechaRequerida"):"";
 			String destinatario = (!ParamUtil.getString(request, "Destinatario").equals(null))? ParamUtil.getString(request,"Destinatario"):"";
 			String remitente = (!ParamUtil.getString(request, "Remitente").equals(null))? ParamUtil.getString(request,"Remitente"):"";
-			String fechaRemitente = (!ParamUtil.getString(request, "fechaRemitente").equals(null))? ParamUtil.getString(request,"fechaRemitente"):"";
 			String numeroExterior = (!ParamUtil.getString(request, "numeroExterior").equals(null))? ParamUtil.getString(request,"numeroExterior"):"";
 			String estado = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"estado"):"";
 			String numeroInterior = (!ParamUtil.getString(request, "numeroInterior").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
@@ -126,13 +127,16 @@ public class MensajeriaPortlet extends MVCPortlet {
 			if(!destinatario.isEmpty()) {
 				log.info("destinatario no esta vacio");
 				log.info(destinatario);
-				destinatarioRemitente = destinatario;
+				destinatarioResult = destinatario;
+				mensaje = "El empleado solicito enviar el paquete";
 			}else if(!remitente.isEmpty()){
 				log.info("remitente no esta vacio");
 				log.info(remitente);
-				destinatarioRemitente = remitente;
+				remitenteResult = remitente;
+				mensaje = "El empleado solicito recibir el paquete";
 			}
-			log.info("destinatarioRemitente: "+destinatarioRemitente);
+			log.info("destinatarioResult: "+destinatarioResult);
+			log.info("remitenteResult: "+remitenteResult);
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
 			String correoRemitente = "";
@@ -145,9 +149,10 @@ public class MensajeriaPortlet extends MVCPortlet {
 				correoRemitente = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString();
 				log.info(destino);
 				}
-			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioRemitente, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
+			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioResult, remitenteResult, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
 			mensajeria.setCorreoRemitente(correoRemitente);
+			mensajeria.setMensaje(mensaje);
 			log.info(mensajeria.toString());
 			mensajeria.sendMail();
 			
@@ -176,7 +181,9 @@ public class MensajeriaPortlet extends MVCPortlet {
 			FileOutputStream fileOuputStreamP = new FileOutputStream(plecatopFile);
 			fileOuputStreamP.write(bytes);
 			fileOuputStreamP.close();
-			String destinatarioRemitente = "";
+			String destinatarioResult = "";
+			String remitenteResult = "";
+			String mensaje = "";
 			String solicitante = empleado.getNombre()+ " " + empleado.getApellidos();
 			String tipoServicio = (!ParamUtil.getString(request, "tipoServicio").equals(null))? ParamUtil.getString(request,"tipoServicio"):"";
 			String fechaSolicitud = (!ParamUtil.getString(request, "fechaSolicitud").equals(null))? ParamUtil.getString(request,"fechaSolicitud"):"";
@@ -198,13 +205,16 @@ public class MensajeriaPortlet extends MVCPortlet {
 			if(!destinatario.isEmpty()) {
 				log.info("destinatario no esta vacio");
 				log.info(destinatario);
-				destinatarioRemitente = destinatario;
+				destinatarioResult = destinatario;
+				mensaje = "El empleado solicito enviar el paquete";
 			}else if(!remitente.isEmpty()){
 				log.info("remitente no esta vacio");
 				log.info(remitente);
-				destinatarioRemitente = remitente;
+				remitenteResult = remitente;
+				mensaje = "El empleado solicito recibir el paquete";
 			}
-			log.info("destinatarioRemitente: "+destinatarioRemitente);
+			log.info("destinatarioResult: "+destinatarioResult);
+			log.info("remitenteResult: "+remitenteResult);
 			
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
@@ -218,10 +228,11 @@ public class MensajeriaPortlet extends MVCPortlet {
 				correoRemitente = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString();
 				log.info(destino);
 				}
-			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioRemitente, fechaRemitente, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
+			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioResult, remitenteResult, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
 			mensajeria.setCorreoRemitente(correoRemitente);
 			mensajeria.setEvidencia(plecatopFile);
+			mensajeria.setMensaje(mensaje);
 			log.info(mensajeria.toString());
 			mensajeria.sendMailWithFile();
 			

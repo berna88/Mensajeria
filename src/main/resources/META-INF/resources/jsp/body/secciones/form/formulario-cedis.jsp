@@ -310,8 +310,9 @@ function enviar(){
 	var colonia = document.getElementById("colonia");
 	var calle = document.getElementById("calle");
 	var comment = document.getElementById("comment");
+	var documento = document.getElementById("fileMensajeria");
 	var error = document.getElementById("error");
-	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity()) {   
+	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity() || !documento.checkValidity()) {   
 		$(document).ready(function () {
 	    	  $('#error').show();
 	    	  setTimeout(function () {

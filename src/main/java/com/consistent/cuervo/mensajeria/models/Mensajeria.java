@@ -26,10 +26,17 @@ public class Mensajeria {
 	private String descripcionServicio;
 	private String fromMensajeria;
 	private String correoRemitente;
+	private String mensaje;
 	private File evidencia;
 	
 	
 	
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
 	public File getEvidencia() {
 		return evidencia;
 	}
@@ -199,6 +206,7 @@ public class Mensajeria {
 	
 	public void sendMail() {
 		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Interior" ,""
+				+ "<h1>"+mensaje+"<h1>"
 				+ "<h4>Solicitante: "+solicitante+"<h4>"
 				+ "<h4>Tipo de servicio: "+tipoServicio+"<h4>"
 				+ "<h4>Fecha de solicitud: "+fechaSolicitud+"<h4>"
@@ -223,6 +231,7 @@ public class Mensajeria {
 	}
 	public void sendMailWithFile() {
 		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Cedis" ,""
+				+ "<h1>"+mensaje+"<h1>"
 				+ "<h4>Solicitante: "+solicitante+"<h4>"
 				+ "<h4>Tipo de servicio: "+tipoServicio+"<h4>"
 				+ "<h4>Fecha de solicitud: "+fechaSolicitud+"<h4>"
