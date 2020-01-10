@@ -21,55 +21,24 @@ Empleado empleado = (Empleado) request.getAttribute("Empleado");
 String nombreCompleto = empleado.getNombre() +" "+empleado.getApellidos();
 
 %>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/jquery-confirm.min.css"%>'>
+<script src='<%=request.getContextPath()+"/js/jquery-confirm.min.js"%>'></script>
 <style>
-.ui-widget.ui-widget-content{
-	border-radius:1.3rem;
-	position: absolute !important;
-	margin-left: auto !important;
-	margin-right: auto !important;
-	margin-top: auto !important;
-	margin-bottom: auto !important;
-	height: 230px !important;
-	width: 500px !important;
-	top: 500px !important;
-	left: 0 !important;
-	right: 0 !important;
-	background: rgb(23,23,23) !important;
-	border: solid 1px rgb(204,184,116) !important;
+.jconfirm .jconfirm-box{
+	background: #202020 !important;
+    color: white;
+    border: solid 1px #b1a16b;
 }
-.ui-widget.ui-widget-content .ui-dialog-titlebar {
-	background: transparent !important;
-    color: #ccb874 !important;
-    border: none !important;
+.jconfirm-title-c{
+	text-align: center;
+    color: #b1a16b;
 }
-.ui-widget.ui-widget-content .ui-dialog-titlebar button{
-	background: transparent !important;
-    border: none !important;
+.jconfirm-content{
+	text-align: center;
 }
-.ui-dialog-title{
-    width: 100% !important;
-    text-align: center !important;
-}
-.ui-dialog-buttonpane{
-	background: transparent !important;
-    border: none !important;
-}
-.ui-dialog-buttonset{
-width: 100%;
-}
-.ui-dialog-buttonset button{
-    display: block;
-    margin: auto !important;
-    background: #CCB874;
-    border-radius: 0;
-    font-family: "Work Sans";
-    font-weight: 600;
-    color: #000 !important;
-    font-size: 18px;
-    line-height: 48px;
-    padding: 0 30px;
-    width: auto;
+.jconfirm-buttons button{
     border: none;
+    background: #b1a16b !important;
+    color: #202020;
 }
-
 </style>

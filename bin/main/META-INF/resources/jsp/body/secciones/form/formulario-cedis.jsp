@@ -298,9 +298,6 @@ function fixStepIndicator(n) {
 </script>
 <script>
 $(document).ready(function () {
-	$('#dialog').hide();
-});
-$(document).ready(function () {
 	$('#error').hide();
 });
 function enviar(){
@@ -324,53 +321,12 @@ function enviar(){
 	    	});
 		    return false;
 		  } else {
-		    $(function() {
-		    	$('#dialog').show();
-		        $( "#dialog" ).dialog({
-		            modal: true,
-		            buttons: {
-		              Aceptar: function() {
-		                $( this ).dialog( "close" );
-		              }
-		            }
-		          });
-		      } );
+			  $.dialog({
+				    title: 'Mensajeria',
+				    content: 'La solicitud se envió correctamente', 
+				});
 		    return true;
 		  } 	
 }
 
 </script>
-<script>
-	var modal;
-	var img= '<%=request.getContextPath()+"/img/notificuervo.svg" %>';
-	YUI().use(
-	 'aui-modal',
-	 function(Y) {
-	   modal = new Y.Modal(
-	     {
-	       bodyContent: '<h3>Tu solicitud ha sido enviada con éxito</h3>',
-	       centered: true,
-	       destroyOnHide: false,
-	       headerContent: '<img style =" display: block; margin: auto;"src="'+img+'" alt="" height="42" width="42">',
-	       modal: true,
-	       render: '#modal',
-	       resizable: {
-	         handles: 'b, r'
-	       },
-	       toolbars: {
-	         body: [
-	           
-	         ]
-	       },
-	       visible: false,
-	       width: 650
-	     }
-	   ).render();
-	 }
-	);
-</script>
-<div id="dialog" title="Mensajeria">
-	<p style="color: white;text-align: center;font-size: 16px;font-weight: 300px;font-family: Source Sans Pro">
-    	Tu solicitud ha sido enviada con éxito.
-  	</p>
-</div>

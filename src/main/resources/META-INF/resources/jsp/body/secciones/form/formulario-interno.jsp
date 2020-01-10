@@ -64,7 +64,7 @@
 <!--Seccion formulario -->      
 	<div class="row justify-content-center" style="font-family: "Source Sans Pro";">
 		<div class="col-12 col-sm-12 col-md-10">
-			<form id="formInterior" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post" onsubmit = "event.preventDefault(); myValidation();">
+			<form id="formInterior" class="formulario formulario-xl" action="${sendInternoURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
         			<div class="tab form-row">
         				<div class="row justify-content-center">
@@ -290,7 +290,7 @@ function fixStepIndicator(n) {
 $(document).ready(function () {
 		$('#error').hide();
 	});
-function myValidation(){
+function enviar(){
 	
 	var numeroExterior = document.getElementById("numeroExterior");
 	var estado = document.getElementById("estado");
@@ -313,49 +313,11 @@ function myValidation(){
 		    	});
 		    return false;
 		  } else {
-		    modal.show();
-		  	
-		  	$(document).ready(function () {
-		    	  
-		    	  setTimeout(function () {
-		    	      send();
-		    	  }, 3000);
-		    	});
-		  } 
-	
+			  $.dialog({
+				    title: 'Mensajeria',
+				    content: 'La solicitud se envió correctamente', 
+				});
+			    return true;
+		  }
 }
-function send(){
-	var url = '<%=sendInternoURL.toString()%>'; 
-    document.forms["formInterior"].action=url;
-	document.forms["formInterior"].submit();
-}
-</script>
-<script>
-	var modal;
-	var img= '<%=request.getContextPath()+"/img/notificuervo.svg" %>';
-	YUI().use(
-	 'aui-modal',
-	 function(Y) {
-	   modal = new Y.Modal(
-	     {
-	       bodyContent: '<h3>Tu solicitud ha sido enviada con éxito</h3>',
-	       centered: true,
-	       destroyOnHide: false,
-	       headerContent: '<img style =" display: block; margin: auto;"src="'+img+'" alt="" height="42" width="42">',
-	       modal: true,
-	       render: '#modal',
-	       resizable: {
-	         handles: 'b, r'
-	       },
-	       toolbars: {
-	         body: [
-	           
-	         ]
-	       },
-	       visible: false,
-	       width: 650
-	     }
-	   ).render();
-	 }
-	);
 </script>
