@@ -128,12 +128,12 @@ public class MensajeriaPortlet extends MVCPortlet {
 				log.info("destinatario no esta vacio");
 				log.info(destinatario);
 				destinatarioResult = destinatario;
-				mensaje = "El empleado solicito enviar el paquete";
+				mensaje = "El empleado solicitó enviar el paquete";
 			}else if(!remitente.isEmpty()){
 				log.info("remitente no esta vacio");
 				log.info(remitente);
 				remitenteResult = remitente;
-				mensaje = "El empleado solicito recibir el paquete";
+				mensaje = "El empleado solicitó recolectar el paquete";
 			}
 			log.info("destinatarioResult: "+destinatarioResult);
 			log.info("remitenteResult: "+remitenteResult);

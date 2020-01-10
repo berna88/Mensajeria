@@ -66,7 +66,7 @@
 </div>
 <!-- Fin de seccion de pasos -->  
 <!--Seccion formulario -->      
-	<div class="row justify-content-center">
+	<div class="row justify-content-center"> 
 		<div class="col-12 col-sm-12 col-md-10">
 			<form id=formularioCedis class="formulario formulario-xl" action="${sendCedisURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
@@ -298,6 +298,9 @@ function fixStepIndicator(n) {
 </script>
 <script>
 $(document).ready(function () {
+	$('#dialog').hide();
+});
+$(document).ready(function () {
 	$('#error').hide();
 });
 function enviar(){
@@ -321,11 +324,21 @@ function enviar(){
 	    	});
 		    return false;
 		  } else {
-		    modal.show();
+		    $(function() {
+		    	$('#dialog').show();
+		        $( "#dialog" ).dialog({
+		            modal: true,
+		            buttons: {
+		              Aceptar: function() {
+		                $( this ).dialog( "close" );
+		              }
+		            }
+		          });
+		      } );
 		    return true;
-		  } 
-	
+		  } 	
 }
+
 </script>
 <script>
 	var modal;
@@ -356,3 +369,8 @@ function enviar(){
 	 }
 	);
 </script>
+<div id="dialog" title="Mensajeria">
+	<p style="color: white;text-align: center;font-size: 16px;font-weight: 300px;font-family: Source Sans Pro">
+    	Tu solicitud ha sido enviada con éxito.
+  	</p>
+</div>
