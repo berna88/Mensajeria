@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <meta http-equiv="x-ua-compatible" content="IE=Edge" /> 
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/general.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/form.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/calendar.css"%>'>
