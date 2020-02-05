@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true,
 	property = {
-		"com.liferay.portlet.display-category=category.sample",
+		"com.liferay.portlet.display-category=root//Cuervo//Intranet",
 		"com.liferay.portlet.header-portlet-css=/css/form.css",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"com.liferay.portlet.header-portlet-css=/css/jquery-ui.css",

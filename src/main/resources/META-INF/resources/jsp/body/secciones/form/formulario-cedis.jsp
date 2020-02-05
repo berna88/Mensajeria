@@ -9,8 +9,7 @@
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/modal.css"%>'>
 
 <%@ include file="/init.jsp" %>
-<!-- Banner -->  
-<%@ include file="../../../header/banner.jsp" %>
+
 <style>
 
 .ancho-date{
