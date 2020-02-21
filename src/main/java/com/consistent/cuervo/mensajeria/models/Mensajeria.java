@@ -178,9 +178,7 @@ public class Mensajeria {
 		this.calle = calle;
 		this.descripcionServicio = descripcionServicio;
 	}
-	/**
-	 * Metodo para validar datos vacios
-	 */
+	
 	public Mensajeria() {
 		this.solicitante = "";
 		this.tipoServicio = "";
