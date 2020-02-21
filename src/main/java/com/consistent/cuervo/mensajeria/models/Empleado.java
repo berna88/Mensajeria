@@ -10,6 +10,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 
 public class Empleado {
+	
 	private static Log log = LogFactoryUtil.getLog(Empleado.class.getName());
 	
 	private String noEmpleado;

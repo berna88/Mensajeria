@@ -27,9 +27,6 @@ import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 
-/**
- * @author bernardohernandez
- */
 @Component(
 	immediate = true,
 	property = {

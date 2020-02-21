@@ -5,9 +5,15 @@ import java.io.File;
 import com.consistent.cuervo.mensajeria.email.SendMail;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-
+/**
+ * @author Bernardo Hernández Ramírez
+ * @version 1.0
+ * @since 2020-02-20
+ */
 public class Mensajeria {
+	
 	private static final Log log = LogFactoryUtil.getLog(Mensajeria.class);
+	
 	private String solicitante;
 	private String tipoServicio;
 	private String fechaSolicitud;
@@ -28,8 +34,6 @@ public class Mensajeria {
 	private String correoRemitente;
 	private String mensaje;
 	private File evidencia;
-	
-	
 	
 	public String getMensaje() {
 		return mensaje;
@@ -174,7 +178,9 @@ public class Mensajeria {
 		this.calle = calle;
 		this.descripcionServicio = descripcionServicio;
 	}
-	
+	/**
+	 * Metodo para validar datos vacios
+	 */
 	public Mensajeria() {
 		this.solicitante = "";
 		this.tipoServicio = "";
@@ -204,6 +210,9 @@ public class Mensajeria {
 				+ colonia + ", calle=" + calle + ", descripcionServicio=" + descripcionServicio + "]";
 	}
 	
+	/**
+	 * Metodo que envia el correo
+	 */
 	public void sendMail() {
 		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Interior" ,""
 				+ "<h1>"+mensaje+"<h1>"
@@ -224,11 +233,14 @@ public class Mensajeria {
 				+ "<h4>Calle: "+calle+"<h4>"
 				+ "<h4>Descripción servicio: "+descripcionServicio+"<h4>", null);
 		if(enviado) {
-			log.info("Se envio el correo correctamente");
+			log.debug("Se envio el correo correctamente");
 		}else {
-			log.info("No se envio correo");
+			log.debug("No se envio correo");
 		}
 	}
+	/**
+	 * Metodo que envia el correo con archivo adjunto
+	 */
 	public void sendMailWithFile() {
 		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Cedis" ,""
 				+ "<h1>"+mensaje+"<h1>"
@@ -249,9 +261,9 @@ public class Mensajeria {
 				+ "<h4>Calle: "+calle+"<h4>"
 				+ "<h4>Descripción servicio: "+descripcionServicio+"<h4>", evidencia);
 		if(enviado) {
-			log.info("Se envio el correo correctamente");
+			log.debug("Se envio el correo correctamente");
 		}else {
-			log.info("No se envio correo");
+			log.debug("No se envio correo");
 		}
 	}
 	
