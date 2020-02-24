@@ -26,7 +26,11 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
-
+/**
+ * @author Bernardo Hernández Ramírez
+ * @version 1.0.0
+ * @since 2020-02-20
+ */
 @Component(
 	immediate = true,
 	property = {
@@ -46,26 +50,28 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = Portlet.class
 )
+
 public class MensajeriaPortlet extends MVCPortlet {
 	// log
 	private static final Log log = LogFactoryUtil.getLog(MensajeriaPortlet.class);
-	// Modelo del empleado
+	/**
+	 * Vaviable que guada al empleado
+	 */
 	private Empleado empleado;
 	
 	@Override
 		public void render(RenderRequest renderRequest, RenderResponse renderResponse)
 				throws IOException, PortletException {
 			// TODO Auto-generated method stub
-		log.info("<--------- render ---------->");
 		try {
 			User user = PortalUtil.getUser(renderRequest);
 			empleado = new Empleado(user);
 			
 			if(empleado.getUser()!=null) {
-				log.info("Logeado");
+				log.debug("Logeado");
 				renderRequest.setAttribute("Empleado", empleado);
 			}else {
-				log.info("No logeado");
+				log.debug("No logeado");
 				Empleado empleado = new Empleado();
 				renderRequest.setAttribute("Empleado", empleado);
 			}
@@ -78,28 +84,32 @@ public class MensajeriaPortlet extends MVCPortlet {
 			
 		}
 	/**
-	 * @author bernardohernandez
-	 * @param request
-	 * @param response
+	 * Metodo que te envia al JSP fomulario Interno
+	 * @param request Solicitud de la vista principal interno
+	 * @param response Establece una variable que envia a otra vista
 	 */
 	public void getSelection(ActionRequest request, ActionResponse response) {
 		String select = ParamUtil.getString(request,"select");
 		request.setAttribute("select", select);
 		response.setRenderParameter("mvcPath", "/jsp/body/secciones/form/formulario-interno.jsp");
 	}
-	
+	/**
+	 * Metodo que te envia al JSP fomulario Cedis
+	 * @param request Solicitud de la vista principal interno
+	 * @param response Establece una variable que envia a otra vista
+	 */
 	public void getSelectionCedis(ActionRequest request, ActionResponse response) {
 		String selectCedis = ParamUtil.getString(request,"selectCedis");
 		request.setAttribute("selectCedis", selectCedis);
 		response.setRenderParameter("mvcPath", "/jsp/body/secciones/form/formulario-cedis.jsp");
 	}
 	/**
-	 * 
-	 * @param request
-	 * @param response
+	 * Metodo que envia la información solicitada de Interno
+	 * @param request Solicitud del formulario
+	 * @param response Respuesta del formulario
 	 */
 	public void sendInterno(ActionRequest request, ActionResponse response) {
-				log.info("<--------- Form interno ---------->");
+				log.debug("<--------- Form interno ---------->");
 		try {
 			String destinatarioResult = "";
 			String remitenteResult = "";
@@ -122,29 +132,24 @@ public class MensajeriaPortlet extends MVCPortlet {
 			String descripcionServicio = (!ParamUtil.getString(request, "descripcionServicio").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
 			
 			if(!destinatario.isEmpty()) {
-				log.info("destinatario no esta vacio");
-				log.info(destinatario);
+				
 				destinatarioResult = destinatario;
 				mensaje = "El empleado solicitó enviar el paquete";
 			}else if(!remitente.isEmpty()){
-				log.info("remitente no esta vacio");
-				log.info(remitente);
+				
 				remitenteResult = remitente;
 				mensaje = "El empleado solicitó recolectar el paquete";
 			}
-			log.info("destinatarioResult: "+destinatarioResult);
-			log.info("remitenteResult: "+remitenteResult);
+			
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
 			String correoRemitente = "";
 			
 			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals("")){
 				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
-				log.info(destino);
 				}
 			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals("")){
 				correoRemitente = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString();
-				log.info(destino);
 				}
 			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioResult, remitenteResult, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);
@@ -159,13 +164,15 @@ public class MensajeriaPortlet extends MVCPortlet {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Metodo que envia la información solicitada de Cedis
+	 * @param request Solicitud del formulario
+	 * @param response Respuesta del formulario
+	 */
 	public void sendCedis(ActionRequest request, ActionResponse response) {
-		log.info("<--------- Form interno ---------->");
+		log.debug("<--------- Form interno ---------->");
 		try {	
 			byte[] bytes = null;
-			String PATH = request.getContextPath();
-			log.info(PATH);
 			UploadPortletRequest portletRequest = PortalUtil.getUploadPortletRequest(request);
 			String sourceFileName = portletRequest.getFileName("evidenciaProducto");
 			File file = portletRequest.getFile("evidenciaProducto");
@@ -187,7 +194,7 @@ public class MensajeriaPortlet extends MVCPortlet {
 			String fechaRequerida = (!ParamUtil.getString(request, "fechaRequerida").equals(null))? ParamUtil.getString(request,"fechaRequerida"):"";
 			String destinatario = (!ParamUtil.getString(request, "Destinatario").equals(null))? ParamUtil.getString(request,"Destinatario"):"";
 			String remitente = (!ParamUtil.getString(request, "Remitente").equals(null))? ParamUtil.getString(request,"Remitente"):"";
-			String fechaRemitente = (!ParamUtil.getString(request, "fechaRemitente").equals(null))? ParamUtil.getString(request,"fechaRemitente"):"";
+			//String fechaRemitente = (!ParamUtil.getString(request, "fechaRemitente").equals(null))? ParamUtil.getString(request,"fechaRemitente"):"";
 			String numeroExterior = (!ParamUtil.getString(request, "numeroExterior").equals(null))? ParamUtil.getString(request,"numeroExterior"):"";
 			String estado = (!ParamUtil.getString(request, "estado").equals(null))? ParamUtil.getString(request,"estado"):"";
 			String numeroInterior = (!ParamUtil.getString(request, "numeroInterior").equals(null))? ParamUtil.getString(request,"numeroInterior"):"";
@@ -200,18 +207,12 @@ public class MensajeriaPortlet extends MVCPortlet {
 			String descripcionServicio = (!ParamUtil.getString(request, "descripcionServicio").equals(null))? ParamUtil.getString(request,"descripcionServicio"):"";
 			
 			if(!destinatario.isEmpty()) {
-				log.info("destinatario no esta vacio");
-				log.info(destinatario);
 				destinatarioResult = destinatario;
 				mensaje = "El empleado solicito enviar el paquete";
 			}else if(!remitente.isEmpty()){
-				log.info("remitente no esta vacio");
-				log.info(remitente);
 				remitenteResult = remitente;
 				mensaje = "El empleado solicito recibir el paquete";
 			}
-			log.info("destinatarioResult: "+destinatarioResult);
-			log.info("remitenteResult: "+remitenteResult);
 			
 			ThemeDisplay themeDisplay = (ThemeDisplay)  request.getAttribute(WebKeys.THEME_DISPLAY);
 			String destino = "";
@@ -219,11 +220,9 @@ public class MensajeriaPortlet extends MVCPortlet {
 			
 			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString().equals("")){
 				destino = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("emailMensajeria").toString();
-				log.info(destino);
 				}
 			if(!themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals(null) && !themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString().equals("")){
 				correoRemitente = themeDisplay.getSiteGroup().getExpandoBridge().getAttribute("correoRemitente").toString();
-				log.info(destino);
 				}
 			Mensajeria mensajeria = new Mensajeria(solicitante, tipoServicio, fechaSolicitud, fechaRequerida, destinatarioResult, remitenteResult, numeroExterior, estado, numeroInterior, ciudadMunicipio, telefono, codigoPostal, horarioAtencion, colonia, calle, descripcionServicio);
 			mensajeria.setFromMensajeria(destino);

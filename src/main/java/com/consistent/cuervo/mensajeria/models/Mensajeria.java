@@ -14,6 +14,7 @@ public class Mensajeria {
 	
 	private static final Log log = LogFactoryUtil.getLog(Mensajeria.class);
 	
+	//Atributos de clase
 	private String solicitante;
 	private String tipoServicio;
 	private String fechaSolicitud;
@@ -155,7 +156,25 @@ public class Mensajeria {
 	public void setDescripcionServicio(String descripcionServicio) {
 		this.descripcionServicio = descripcionServicio;
 	}
-	
+	/**
+	 * Constructor de la Clase mensajeria
+	 * @param solicitante Usuario que solicita mensajeria
+	 * @param tipoServicio El tipo de servicio solicitado
+	 * @param fechaSolicitud Fecha de la soliciitud
+	 * @param fechaRequerida Fecha que es requerida
+	 * @param fechaDestinaratio Fecha del destinatario
+	 * @param fechaRemitente Fecha del remitente
+	 * @param numeroExterior Numero exterior del solicitante
+	 * @param estado Estado del solicitante
+	 * @param numeroInterior Numero interior del solicitante
+	 * @param ciudadMunicipio Municipio del solicitante
+	 * @param telefono Telefono del solicitante
+	 * @param codigoPostal Condigo postal del solicitante
+	 * @param horarioAtencion Horario para localizar
+	 * @param colonia Colonia del paquete mensajeria
+	 * @param calle Calle del solicitante
+	 * @param descripcionServicio Campo opcional del solicitante
+	 */
 	public Mensajeria(String solicitante, String tipoServicio, String fechaSolicitud, String fechaRequerida,
 			String fechaDestinaratio, String fechaRemitente, String numeroExterior, String estado,
 			String numeroInterior, String ciudadMunicipio, String telefono, String codigoPostal, String horarioAtencion,
