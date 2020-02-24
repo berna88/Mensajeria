@@ -111,7 +111,7 @@
 			<!--Tab dos-->
                <div class="tab form-row">
                		<div class="row justify-content-center">
-                    	<div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-11">
+                    	<div class="col-10 col-sm-12 col-md-12 col-lg-11 col-xl-11">
                     		<div class="row">
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                        	<%if(tipoSelect.equalsIgnoreCase("Enviar")){ %>

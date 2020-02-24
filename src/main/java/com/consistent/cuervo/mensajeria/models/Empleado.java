@@ -9,6 +9,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 /**
+ * Modelo para crear objetos empleado
  * @author Bernardo Hernández Ramírez
  * @version 1.0
  * @since 2020-02-20

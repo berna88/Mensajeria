@@ -67,7 +67,7 @@
 <!-- Fin de seccion de pasos -->  
 <!--Seccion formulario -->      
 	<div class="row justify-content-center"> 
-		<div class="col-12 col-sm-12 col-md-10">
+		<div class="col-11 col-sm-12 col-md-10">
 			<form id=formularioCedis class="formulario formulario-xl" action="${sendCedisURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
         			<div class="tab form-row">

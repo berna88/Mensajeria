@@ -27,6 +27,7 @@ import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 /**
+ * Clase principal generada por el portlet
  * @author Bernardo Hernández Ramírez
  * @version 1.0.0
  * @since 2020-02-20
@@ -37,8 +38,6 @@ import org.osgi.service.component.annotations.Component;
 		"com.liferay.portlet.display-category=root//Cuervo//Intranet",
 		"com.liferay.portlet.header-portlet-css=/css/form.css",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
-		"com.liferay.portlet.header-portlet-css=/css/jquery-ui.css",
-		"com.liferay.portlet.footer-portlet-javascript=/js/jquery-ui.js",
 		"com.liferay.portlet.instanceable=true",
 		"javax.portlet.display-name=Mensajeria",
 		"javax.portlet.init-param.template-path=/",
@@ -155,7 +154,6 @@ public class MensajeriaPortlet extends MVCPortlet {
 			mensajeria.setFromMensajeria(destino);
 			mensajeria.setCorreoRemitente(correoRemitente);
 			mensajeria.setMensaje(mensaje);
-			log.info(mensajeria.toString());
 			mensajeria.sendMail();
 			
 		}catch (Exception e) {
@@ -229,7 +227,6 @@ public class MensajeriaPortlet extends MVCPortlet {
 			mensajeria.setCorreoRemitente(correoRemitente);
 			mensajeria.setEvidencia(plecatopFile);
 			mensajeria.setMensaje(mensaje);
-			log.info(mensajeria.toString());
 			mensajeria.sendMailWithFile();
 			
 		}catch (Exception e) {
