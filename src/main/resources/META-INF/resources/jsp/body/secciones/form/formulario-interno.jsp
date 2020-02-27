@@ -101,6 +101,7 @@
 					                	</div>
 									</section>
 									<div class="col-md-12 mt-50 mb-50">
+										<p style="color:red; font-style: italic;" id="mensajePassUno"></p>
 										<a class=" w-50 pt-1 pb-1 float-right text-center" id="nextBtn" onclick="nextPrev(1)" style="background: #cbb874;color: black;display: block;margin: auto;">Siguiente</a>
 									</div>
 								</div>
@@ -140,7 +141,7 @@
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="teléfono" class="text-white">Teléfono:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="telefono" type="tel" name="<portlet:namespace />telefono" required> 
+		                        	<input class="form-control" id="telefono" type="number" name="<portlet:namespace />telefono" required> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		         					<label for="codigoPortal" class="text-white">Código Postal:<span class="yellow">*</span></label>
@@ -167,7 +168,6 @@
 			                        <textarea class="form-control" rows="5" id="comment" style="height: 100px;resize: none;" name="<portlet:namespace />descripcionServicio" required></textarea>  
 		                        </div>
 				                <div class="form-group col-lg-12 text-right mt-25 mb-50">
-				                	<p id="error" style="color: red;">Necesitas llenar todos los campos</p>
 				                    <button id="enviarInterior" onclick="enviar()" class="btn w-25 pt-1 pb-1 float-right text-center" style="background: #cbb874;color: black;display: block;margin: auto;">Enviar</button>
 				                </div>
                 			</div><!-- Fin de row -->
@@ -200,6 +200,7 @@ $('#datepicker2').datepicker({
     locale: 'es-es',
     format: 'dd/mm/yyyy'
 });
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -269,6 +270,8 @@ function validateForm() {
       valid = false;
     }
   }
+  
+ 
   // If the valid status is true, mark the step as finished and valid:
   //if (valid) {
    // document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -286,9 +289,12 @@ function fixStepIndicator(n) {
 }
 </script>
 <script>
+
 $(document).ready(function () {
 		$('#error').hide();
 	});
+	
+
 function enviar(){
 	
 	var numeroExterior = document.getElementById("numeroExterior");
@@ -311,7 +317,7 @@ function enviar(){
 		    	  }, 3000);
 		    	});
 		    return false;
-		  } else {
+		  }else {
 			  $.dialog({
 				    title: 'Mensajeria',
 				    content: 'La solicitud se envió correctamente', 

@@ -137,7 +137,7 @@
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Teléfono:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="telefono" type="tel" name="<portlet:namespace />telefono" required="required"> 
+		                        	<input class="form-control" id="telefono" type="number" name="<portlet:namespace />telefono" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Ciudad / Municipio:<span class="yellow">*</span></label>
