@@ -238,7 +238,6 @@ function nextPrev(n) {
   	// This function will figure out which tab to display
   	var x = document.getElementsByClassName("tab");
 	var i, s = document.getElementsByClassName("md-step");
-	console.log(s);
  
   	//... and adds the "active" class on the current step:
   	x[n].className += " active";
@@ -248,7 +247,7 @@ function nextPrev(n) {
     s[1].className = s[1].className.replace("active", "");
     s[2].className = s[2].className.replace("md-step", "md-step active");
   }
-  console.log(s);
+  
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
@@ -290,7 +289,7 @@ function fixStepIndicator(n) {
   	var i, x = document.getElementsByClassName("md-step");
   	for (i = 0; i < x.length; i++) {
     x[i].className = x[i].className.replace("active", "");
-    console.log(x);
+  
   }
   //and adds the "active" class on the current step:
   x[n].className += " active";
