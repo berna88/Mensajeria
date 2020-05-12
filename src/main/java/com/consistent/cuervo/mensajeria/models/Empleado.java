@@ -8,10 +8,16 @@ import java.util.Locale;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
-
+/**
+ * Modelo para crear objetos empleado
+ * @author Bernardo Hernández Ramírez
+ * @version 1.0
+ * @since 2020-02-20
+ */
 public class Empleado {
-	private static Log log = LogFactoryUtil.getLog(Empleado.class.getName());
 	
+	private static Log log = LogFactoryUtil.getLog(Empleado.class.getName());
+	//Atributos de clase
 	private String noEmpleado;
 	private String fechaIngreso;
 	private String puesto;
@@ -192,11 +198,28 @@ public class Empleado {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	
+	/**
+	 * Constructor para  establecer el usuario activo
+	 * @param user Colocar un usuario liferay
+	 */
 	public Empleado(User user) {
 		this.user = user;
 	}
 	
+	/**
+	 * Constructor para establecer el usuario activo con los campos extendidos de cuervo
+	 * <p>
+	 * @param noEmpleado Identificador de usuario
+	 * @param fechaIngreso Fecha en la que ingreso el usuario
+	 * @param puesto Puesto del usuario
+	 * @param departamento Departamento al que pertenece el usuario
+	 * @param centroCostos Centro de costo del usuario
+	 * @param centrotrabajo Centro del trabajo del usuario
+	 * @param aniversario Obtiene el aniversario del usuario
+	 * @param diasDisponibles Dias disponibles de usuario
+	 * @param nombre Nombre del usuario
+	 * @param apellidos Apellidos del usuario
+	 */
 	public Empleado(String noEmpleado, String fechaIngreso, String puesto, String departamento, String centroCostos,
 			String centrotrabajo, int aniversario, String diasDisponibles, String nombre, String apellidos) {
 		super();

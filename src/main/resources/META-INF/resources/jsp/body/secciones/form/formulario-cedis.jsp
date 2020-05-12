@@ -1,60 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <meta http-equiv="x-ua-compatible" content="IE=Edge" /> 
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/general.css"%>'>
 <link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/form.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/calendar.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/gijgo.min.css"%>'>
+<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/modal.css"%>'>
+
 <%@ include file="/init.jsp" %>
-<!-- Banner -->  
-<%@ include file="../../../header/banner.jsp" %>
+
 <style>
-#modal .modal-dialog {
-   z-index: 1!important;
-}
 
-#modal .modal-footer .btn-toolbar>.btn:first-child {
-   display: block;
-   margin: auto;
-   background: #CCB874;
-   border-radius: 0;
-   font-family: "Work Sans";
-   font-weight: 600;
-   color: #000 !important;
-   font-size: 18px;
-   line-height: 48px;
-   padding: 0 30px;
-   width: auto;
-}
-#modal .btn-toolbar-content .yui3-widget .component .btn-toolbar{
-   display: block;
-   margin: auto;
-}
-#modal .modal-content {
-   overflow: hidden;
-   background: black;
-   border: solid 1px #cbb874;
-   height: 300px;
-   border-radius: 1.3rem;
-}
-#modal .modal-header {
-   border: none;
-   margin-top: 5%;
-}
-
-#modal .modal-body {
-   text-align: center;
-   color: white;
-}
-
-#modal .modal-body h3 {
-   font-size: 20px;
-}
-
-#modal .modal-footer {
-   border: none;
-}
-#modal .yui3-widget-ft.modal-footer {
-   display: block;
-   margin: auto;
-}
 .ancho-date{
 	width: 46%;
 }
@@ -76,88 +33,7 @@
 	width: 100%;
 	}
 }
-/**** CALENDAR ***/
-.ui-datepicker{
-	top: 325px !important;
-}
-.ui-datepicker .ui-datepicker-header {
-    background: none;
-    border: none;
-}
-
-.ui-widget.ui-widget-content {
-    border: 1px solid rgb(205, 184, 116);
-    background: black;
-    border-radius: 15px;
-}
-
-.ui-state-default {
-	border: unset !important;
-    background: none !important;
-    color: #FFFFFF !important;
-}
-
-.ui-state-highlight, 
-.ui-widget-content .ui-state-highlight, 
-.ui-widget-header .ui-state-highlight {
-    border: unset !important;
-    background: #CDB874 !important;
-    color: black !important;
-}
-.ui-widget-content{
-padding: 15px;
-}
-
-.ui-datepicker td span,
-.ui-datepicker td a {
-    text-align: center;
-}
-
-.ui-datepicker .ui-datepicker-title {
-    
-    display: flex;
-    justify-content: center;
-}
-
-.ui-datepicker select.ui-datepicker-month{
-	margin-right: 10px;
-}
-
-.ui-datepicker select.ui-datepicker-month,
-.ui-datepicker select.ui-datepicker-year {
-    width: 47%;
-    background: black;
-    color: white;
-    border: 1px solid #CDB874;
-}
-
-.ui-datepicker-calendar thead {
-	border-top: 1px solid #CDB874;
-}
-.ui-datepicker .ui-datepicker-title {
-    margin: 0; 
-    margin-top: 20px !important;
-}
-.ui-datepicker-header > button {
-	position: absolute !important;
-    right: -10px;
-    top: -18px;
-    left: initial !important;
-}
-.ui-datepicker-title select[data-event="change"] {
-	height: 27px;
-    padding: 0px 6px !important;
-    margin-bottom: .7rem;
-    border-radius: 0px;
-}
-.ui-datepicker-calendar thead {
-	color: white;
-}
-.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
-    opacity: .7 !important;
-}
 </style>
-<link rel="stylesheet" type="text/css" href='<%=request.getContextPath()+"/css/formSteps.css"%>'>
 <% String tipoSelect = (String) request.getAttribute("selectCedis"); %>
 <!-- Fin de Banner --> 
 <!-- seccion de pasos -->  
@@ -190,8 +66,8 @@ padding: 15px;
 </div>
 <!-- Fin de seccion de pasos -->  
 <!--Seccion formulario -->      
-	<div class="row justify-content-center">
-		<div class="col-12 col-sm-12 col-md-10">
+	<div class="row justify-content-center"> 
+		<div class="col-11 col-sm-12 col-md-10">
 			<form id=formularioCedis class="formulario formulario-xl" action="${sendCedisURL}" style="margin-left:0%;margin-right:0%;width:100%" method="post">
 				<!--Tab uno-->
         			<div class="tab form-row">
@@ -217,7 +93,7 @@ padding: 15px;
 												Fecha de solicitud<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
-									 			<input id="fechaInicio" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
+									 			<input id="datepicker1" type="text" class="form-control form-control-sm" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaSolicitud" autocomplete="off">
 											</div>
 					                	</div>
 					                	<div class="ancho-date mb-2">
@@ -225,7 +101,7 @@ padding: 15px;
 												Fecha requerida:<span class="yellow">*</span>
 											</label>
 											<div class="input-group mb-3 ">
-												<input id="fechaRegreso" type="text" class="form-control form-control-sm calendar" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
+												<input id="datepicker2" type="text" class="form-control form-control-sm" style="background: url('<%=request.getContextPath()+"/img/calendar-cuervo.svg"%>') no-repeat scroll 5px 4px;background-size: 17px;background-position: 96%; " name="<portlet:namespace />fechaRequerida" autocomplete="off">
 											</div>
 					                	</div>
 									</section>
@@ -261,7 +137,7 @@ padding: 15px;
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Teléfono:<span class="yellow">*</span></label>
-		                        	<input class="form-control" id="telefono" type="tel" name="<portlet:namespace />telefono" required="required"> 
+		                        	<input class="form-control" id="telefono" type="number" name="<portlet:namespace />telefono" required="required"> 
 		                        </div>
 		                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
 		                           	<label for="numeroInterior" class="text-white">Ciudad / Municipio:<span class="yellow">*</span></label>
@@ -320,7 +196,20 @@ padding: 15px;
  <div class="yui3-skin-sam">
 	 <div id="modal"></div>
 </div>
+<script src='<%=request.getContextPath()+"/js/gijgo.min.js"%>'></script>
+<script src='<%=request.getContextPath()+"/js/core.js"%>'></script>
+<script src='<%=request.getContextPath()+"/js/datepicker.js"%>'></script>
 <script>
+$('#datepicker1').datepicker({
+    uiLibrary: 'bootstrap4',
+    locale: 'es-es',
+    format: 'dd/mm/yyyy'
+});
+$('#datepicker2').datepicker({
+    uiLibrary: 'bootstrap4',
+    locale: 'es-es',
+    format: 'dd/mm/yyyy'
+});
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -421,8 +310,9 @@ function enviar(){
 	var colonia = document.getElementById("colonia");
 	var calle = document.getElementById("calle");
 	var comment = document.getElementById("comment");
+	var documento = document.getElementById("fileMensajeria");
 	var error = document.getElementById("error");
-	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity()) {   
+	if (!numeroExterior.checkValidity() || !estado.checkValidity() || !ciudadMunicipio.checkValidity() || !telefono.checkValidity() || !codigoPostal.checkValidity() || !horarioAtencion.checkValidity() || !colonia.checkValidity() || !calle.checkValidity() || !comment.checkValidity() || !documento.checkValidity()) {   
 		$(document).ready(function () {
 	    	  $('#error').show();
 	    	  setTimeout(function () {
@@ -431,38 +321,12 @@ function enviar(){
 	    	});
 		    return false;
 		  } else {
-		    modal.show();
+			  $.dialog({
+				    title: 'Mensajeria',
+				    content: 'La solicitud se envió correctamente', 
+				});
 		    return true;
-		  } 
-	
+		  } 	
 }
-	var modal;
-	var img= '<%=request.getContextPath()+"/img/notificuervo.svg" %>';
-	YUI().use(
-	 'aui-modal',
-	 function(Y) {
-	   modal = new Y.Modal(
-	     {
-	       bodyContent: '<h3>Tu solicitud ha sido enviada con éxito</h3>',
-	       centered: true,
-	       destroyOnHide: false,
-	       headerContent: '<img style =" display: block; margin: auto;"src="'+img+'" alt="" height="42" width="42">',
-	       modal: true,
-	       render: '#modal',
-	       resizable: {
-	         handles: 'b, r'
-	       },
-	       toolbars: {
-	         body: [
-	           
-	         ]
-	       },
-	       visible: false,
-	       width: 650
-	     }
-	   ).render();
-	 }
-	);
-
 
 </script>

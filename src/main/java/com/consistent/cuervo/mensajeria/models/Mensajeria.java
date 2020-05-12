@@ -5,9 +5,16 @@ import java.io.File;
 import com.consistent.cuervo.mensajeria.email.SendMail;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-
+/**
+ * @author Bernardo Hernández Ramírez
+ * @version 1.0
+ * @since 2020-02-20
+ */
 public class Mensajeria {
+	
 	private static final Log log = LogFactoryUtil.getLog(Mensajeria.class);
+	
+	//Atributos de clase
 	private String solicitante;
 	private String tipoServicio;
 	private String fechaSolicitud;
@@ -26,10 +33,15 @@ public class Mensajeria {
 	private String descripcionServicio;
 	private String fromMensajeria;
 	private String correoRemitente;
+	private String mensaje;
 	private File evidencia;
 	
-	
-	
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
 	public File getEvidencia() {
 		return evidencia;
 	}
@@ -144,7 +156,25 @@ public class Mensajeria {
 	public void setDescripcionServicio(String descripcionServicio) {
 		this.descripcionServicio = descripcionServicio;
 	}
-	
+	/**
+	 * Constructor de la Clase mensajeria
+	 * @param solicitante Usuario que solicita mensajeria
+	 * @param tipoServicio El tipo de servicio solicitado
+	 * @param fechaSolicitud Fecha de la soliciitud
+	 * @param fechaRequerida Fecha que es requerida
+	 * @param fechaDestinaratio Fecha del destinatario
+	 * @param fechaRemitente Fecha del remitente
+	 * @param numeroExterior Numero exterior del solicitante
+	 * @param estado Estado del solicitante
+	 * @param numeroInterior Numero interior del solicitante
+	 * @param ciudadMunicipio Municipio del solicitante
+	 * @param telefono Telefono del solicitante
+	 * @param codigoPostal Condigo postal del solicitante
+	 * @param horarioAtencion Horario para localizar
+	 * @param colonia Colonia del paquete mensajeria
+	 * @param calle Calle del solicitante
+	 * @param descripcionServicio Campo opcional del solicitante
+	 */
 	public Mensajeria(String solicitante, String tipoServicio, String fechaSolicitud, String fechaRequerida,
 			String fechaDestinaratio, String fechaRemitente, String numeroExterior, String estado,
 			String numeroInterior, String ciudadMunicipio, String telefono, String codigoPostal, String horarioAtencion,
@@ -197,8 +227,12 @@ public class Mensajeria {
 				+ colonia + ", calle=" + calle + ", descripcionServicio=" + descripcionServicio + "]";
 	}
 	
+	/**
+	 * Metodo que envia el correo
+	 */
 	public void sendMail() {
 		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Interior" ,""
+				+ "<h1>"+mensaje+"<h1>"
 				+ "<h4>Solicitante: "+solicitante+"<h4>"
 				+ "<h4>Tipo de servicio: "+tipoServicio+"<h4>"
 				+ "<h4>Fecha de solicitud: "+fechaSolicitud+"<h4>"
@@ -216,13 +250,17 @@ public class Mensajeria {
 				+ "<h4>Calle: "+calle+"<h4>"
 				+ "<h4>Descripción servicio: "+descripcionServicio+"<h4>", null);
 		if(enviado) {
-			log.info("Se envio el correo correctamente");
+			log.debug("Se envio el correo correctamente");
 		}else {
-			log.info("No se envio correo");
+			log.debug("No se envio correo");
 		}
 	}
+	/**
+	 * Metodo que envia el correo con archivo adjunto
+	 */
 	public void sendMailWithFile() {
 		boolean enviado = SendMail.isSendMail(fromMensajeria, correoRemitente,"Solicitud Mensajeria Cedis" ,""
+				+ "<h1>"+mensaje+"<h1>"
 				+ "<h4>Solicitante: "+solicitante+"<h4>"
 				+ "<h4>Tipo de servicio: "+tipoServicio+"<h4>"
 				+ "<h4>Fecha de solicitud: "+fechaSolicitud+"<h4>"
@@ -240,9 +278,9 @@ public class Mensajeria {
 				+ "<h4>Calle: "+calle+"<h4>"
 				+ "<h4>Descripción servicio: "+descripcionServicio+"<h4>", evidencia);
 		if(enviado) {
-			log.info("Se envio el correo correctamente");
+			log.debug("Se envio el correo correctamente");
 		}else {
-			log.info("No se envio correo");
+			log.debug("No se envio correo");
 		}
 	}
 	
